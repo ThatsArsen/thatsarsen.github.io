@@ -4,75 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой контент</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         body {
-            font-family: sans-serif;
-            margin: 20px;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif; /* Шрифты Material Design */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Светлый фон */
             color: #333;
+            display: flex; /* Flexbox для центрирования контента */
+            justify-content: center;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            min-height: 100vh; /* Минимальная высота viewport */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px; /* Максимальная ширина контента */
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         h1 {
-            color: #0056b3;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
+            color: #3f51b5; /* Основной цвет Material Design */
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-weight: 300; /* Более тонкий шрифт для заголовка */
         }
 
         h2 {
-            color: #007bff;
+            color: #3f51b5;
             margin-top: 30px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 400;
         }
 
         a {
-            color: #007bff;
+            color: #3f51b5;
             text-decoration: none;
+            transition: color 0.3s ease; /* Плавная анимация цвета */
         }
 
         a:hover {
             text-decoration: underline;
+            color: #5c6bc0; /* Немного светлее при наведении */
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
+            gap: 20px;
         }
 
         .content-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            background-color: #fff; /* Белый фон карточки */
+            border-radius: 8px; /* Скругленные углы карточки */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавные анимации */
+            display: flex; /* Flexbox для содержимого карточки */
+            flex-direction: column;
         }
 
         .content-item:hover {
-            background-color: #f9f9f9;
+            transform: translateY(-3px); /* Небольшое поднятие при наведении */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Более выраженная тень при наведении */
+        }
+
+        .content-item h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .content-item p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .content-item .actions {
+            margin-top: auto; /* Прижимаем кнопки действий вниз карточки */
+        }
+
+        .content-item .actions a {
+            display: inline-flex; /* Flexbox для кнопки "Смотреть" */
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #eee; /* Светло-серый фон для футера */
+            color: #777;
+            border-top: 1px solid #ddd;
+            margin-top: 50px;
+        }
+
+        /* Стили для iframe-контейнера */
+        #video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
+            height: 0;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        #video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <h1>Добро пожаловать!</h1>
 
-    <h1>Добро пожаловать!</h1>
+        <p>Здесь представлен мой контент. На данный момент доступно следующее:</p>
 
-    <p>Здесь представлен мой контент.  На данный момент доступно следующее:</p>
+        <section class="content-section" id="calmkeeper-section">
+            <h2>Calmkeeper</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3><a href="?video=calmkeeper/main_page.html">Главная страница</a></h3>
+                    <p>Медитативное видео для релаксации и создания спокойной атмосферы. Зацикленное воспроизведение для непрерывного фона.</p>
+                    <div class="actions">
+                        <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
+                    </div>
+                </div>
+                <!-- Здесь можно добавить другие видео из Calmkeeper в виде content-item -->
+            </div>
+        </section>
 
-    <h2>Видео</h2>
+        <!-- Пример другого раздела контента (раскомментируйте, когда понадобится)
+        <section class="content-section" id="another-section">
+            <h2>Другой раздел контента</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <h3><a href="?video=another/content1.html">Название другого контента</a></h3>
+                    <p>Краткое описание другого контента.</p>
+                    <div class="actions">
+                        <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        -->
 
-    <div class="content-item">
-        <h3><a href="calmkeeper/main_page.html">Calmkeeper - Главная страница</a></h3>
-        <p>Медитативное видео для релаксации и создания спокойной атмосферы. Зацикленное воспроизведение для непрерывного фона.</p>
-        <p><a href="calmkeeper/main_page.html">Смотреть видео →</a></p>
+        <div id="video-container">
+            <!-- Здесь будет вставляться iframe с видео -->
+            <p>Выберите видео для просмотра.</p>
+        </div>
+
+        <footer>
+            <p>© 2023 Мой контент. Все права защищены.</p>
+        </footer>
     </div>
 
-    <!--
-    <h2>Другой раздел контента (пример, когда появится больше контента)</h2>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.getElementById('video-container');
+            const params = new URLSearchParams(window.location.search);
+            const videoPath = params.get('video');
 
-    <div class="content-item">
-        <h3><a href="#">Название другого контента</a></h3>
-        <p>Краткое описание другого контента.</p>
-        <p><a href="#">Подробнее →</a></p>
-    </div>
-    -->
+            if (videoPath) {
+                // Безопасность: Проверяем, что путь начинается с допустимых папок (calmkeeper, another, и т.д.)
+                if (videoPath.startsWith('calmkeeper/') || videoPath.startsWith('another/')) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = videoPath;
+                    iframe.title = 'Видео контент';
+                    iframe.frameborder = '0';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.allowFullscreen = true;
 
-    <footer>
-        <p>© 2023 Мой контент. Все права защищены.</p>
-    </footer>
-
+                    videoContainer.innerHTML = ''; // Очищаем контейнер перед вставкой
+                    videoContainer.appendChild(iframe);
+                } else {
+                    videoContainer.innerHTML = '<p>Недопустимый путь к видео.</p>'; // Сообщение об ошибке, если путь неверный
+                }
+            } else {
+                videoContainer.innerHTML = '<p>Выберите видео из списка выше.</p>'; // Сообщение по умолчанию
+            }
+        });
+    </script>
 </body>
 </html>
