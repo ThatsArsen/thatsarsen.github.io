@@ -17,6 +17,7 @@
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
+      transition: transform 200ms ease;
     }
 
     .container {
@@ -145,25 +146,30 @@
     }
 
     .close-button {
-      color: #aaa;
-      position: absolute; /* Positioned inside modal-content */
-      top: 10px;
-      right: 10px;
+      color: #000;
+      background-color: #ffffff60;
+      border: none;
+      text-decoration: none;
+      border-radius: 40pt;
+      position: absolute;
+      top: 8pt;
+      right: 8pt;
       font-size: 30px;
       font-weight: bold;
       cursor: pointer;
-      padding: 5px;
+      padding: 4pt;
       line-height: 1;
-      display: flex; /* Center icon vertically and horizontally */
+      display: flex;/* Center icon vertically and horizontally */
       align-items: center;
       justify-content: center;
+      z-index: 999;
     }
 
     .close-button:hover,
     .close-button:focus {
-      color: whitesmoke;
       text-decoration: none;
       cursor: pointer;
+      background-color: #ffffff80;
     }
     /*
     #modal-video-container {
