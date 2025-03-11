@@ -1,209 +1,249 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой контент</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif; /* Шрифты Material Design */
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa; /* Светлый фон */
-            color: #333;
-            display: flex; /* Flexbox для центрирования контента */
-            justify-content: center;
-            align-items: flex-start; /* Выравнивание по верхнему краю */
-            min-height: 100vh; /* Минимальная высота viewport */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой контент</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif; /* Шрифты Material Design */
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa; /* Светлый фон */
+      color: #333;
+      display: flex; /* Flexbox для центрирования контента */
+      justify-content: center;
+      align-items: flex-start; /* Выравнивание по верхнему краю */
+      min-height: 100vh; /* Минимальная высота viewport */
+    }
 
-        .container {
-            width: 100%;
-            max-width: 960px; /* Максимальная ширина контента */
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    .container {
+      width: 100%;
+      max-width: 960px; /* Максимальная ширина контента */
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
-        h1 {
-            color: #3f51b5; /* Основной цвет Material Design */
-            border-bottom: 2px solid #3f51b5;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-weight: 300; /* Более тонкий шрифт для заголовка */
-        }
+    h1 {
+      color: #3f51b5; /* Основной цвет Material Design */
+      border-bottom: 2px solid #3f51b5;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      font-weight: 300; /* Более тонкий шрифт для заголовка */
+    }
 
-        h2 {
-            color: #3f51b5;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
+    h2 {
+      color: #3f51b5;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
 
-        a {
-            color: #3f51b5;
-            text-decoration: none;
-            transition: color 0.3s ease; /* Плавная анимация цвета */
-        }
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+      transition: color 0.3s ease; /* Плавная анимация цвета */
+    }
 
-        a:hover {
-            text-decoration: underline;
-            color: #5c6bc0; /* Немного светлее при наведении */
-        }
+    a:hover {
+      text-decoration: underline;
+      color: #5c6bc0; /* Немного светлее при наведении */
+    }
 
-        .content-section {
-            margin-bottom: 30px;
-        }
+    .content-section {
+      margin-bottom: 30px;
+    }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
-            gap: 20px;
-        }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
+      gap: 20px;
+    }
 
-        .content-item {
-            background-color: #fff; /* Белый фон карточки */
-            border-radius: 8px; /* Скругленные углы карточки */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
-            padding: 20px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавные анимации */
-            display: flex; /* Flexbox для содержимого карточки */
-            flex-direction: column;
-        }
+    .content-item {
+      background-color: #fff; /* Белый фон карточки */
+      border-radius: 8px; /* Скругленные углы карточки */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
+      padding: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавные анимации */
+      display: flex; /* Flexbox для содержимого карточки */
+      flex-direction: column;
+    }
 
-        .content-item:hover {
-            transform: translateY(-3px); /* Небольшое поднятие при наведении */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Более выраженная тень при наведении */
-        }
+    .content-item:hover {
+      transform: translateY(-3px); /* Небольшое поднятие при наведении */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Более выраженная тень при наведении */
+    }
 
-        .content-item h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
+    .content-item h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
 
-        .content-item p {
-            margin-bottom: 15px;
-            color: #555;
-        }
+    .content-item p {
+      margin-bottom: 15px;
+      color: #555;
+    }
 
-        .content-item .actions {
-            margin-top: auto; /* Прижимаем кнопки действий вниз карточки */
-        }
+    .content-item .actions {
+      margin-top: auto; /* Прижимаем кнопки действий вниз карточки */
+    }
 
-        .content-item .actions a {
-            display: inline-flex; /* Flexbox для кнопки "Смотреть" */
-            align-items: center;
-            gap: 5px;
-            font-weight: 500;
-        }
+    .content-item .actions a {
+      display: inline-flex; /* Flexbox для кнопки "Смотреть" */
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #eee; /* Светло-серый фон для футера */
-            color: #777;
-            border-top: 1px solid #ddd;
-            margin-top: 50px;
-        }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #eee; /* Светло-серый фон для футера */
+      color: #777;
+      border-top: 1px solid #ddd;
+      margin-top: 50px;
+    }
 
-        /* Стили для iframe-контейнера */
-        #video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
-            height: 0;
-            overflow: hidden;
-            margin-top: 30px;
-        }
+    /* Стили для iframe-контейнера */
+    #video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
+      height: 0;
+      overflow: hidden;
+      margin-top: 30px;
+    }
 
-        #video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    #video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Добро пожаловать!</h1>
+  <div class="container">
+    <h1>Добро пожаловать!</h1>
 
-        <p>Здесь представлен мой контент. На данный момент доступно следующее:</p>
+    <p>Здесь представлен мой контент. На данный момент доступно следующее:</p>
 
-        <section class="content-section" id="calmkeeper-section">
-            <h2>Calmkeeper</h2>
-            <div class="content-grid">
-                <div class="content-item">
-                    <h3><a href="?video=calmkeeper/main_page.html">Главная страница</a></h3>
-                    <p>Главная страница и анимация при попадании на неё</p>
-                    <div class="actions">
-                        <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <h3><a href="?video=calmkeeper/onboarding_and_questions.html">Онбординг и анкета</a></h3>
-                    <p>Это onboarding и анкета при первом входе в приложение </p>
-                    <div class="actions">
-                        <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
-                    </div>
-                </div>
-                <!-- Здесь можно добавить другие видео из Calmkeeper в виде content-item -->
-            </div>
-        </section>
-
-        <!-- Пример другого раздела контента (раскомментируйте, когда понадобится)
-        <section class="content-section" id="another-section">
-            <h2>Другой раздел контента</h2>
-            <div class="content-grid">
-                <div class="content-item">
-                    <h3><a href="?video=another/content1.html">Название другого контента</a></h3>
-                    <p>Краткое описание другого контента.</p>
-                    <div class="actions">
-                        <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Подробнее</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        -->
-
-        <div id="video-container">
-            <!-- Здесь будет вставляться iframe с видео -->
-            <p>Выберите видео для просмотра.</p>
+    <section class="content-section" id="calmkeeper-section">
+      <h2>Calmkeeper</h2>
+      <div class="content-grid">
+        <div class="content-item">
+          <h3><a href="?video=calmkeeper/main_page.html">Главная страница</a></h3>
+          <p>Главная страница и анимация при попадании на неё</p>
+          <div class="actions">
+            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
+          </div>
         </div>
+        <div class="content-item">
+          <h3><a href="?video=calmkeeper/onboarding_and_questions.html">Онбординг и анкета</a></h3>
+          <p>Это onboarding и анкета при первом входе в приложение </p>
+          <div class="actions">
+            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
+          </div>
+        </div>
+        <!-- Здесь можно добавить другие видео из Calmkeeper в виде content-item -->
+      </div>
+    </section>
 
-        <footer>
-            <p>© 2023 Мой контент. Все права защищены.</p>
-        </footer>
+    <!-- Пример другого раздела контента (раскомментируйте, когда понадобится)
+    <section class="content-section" id="another-section">
+      <h2>Другой раздел контента</h2>
+      <div class="content-grid">
+        <div class="content-item">
+          <h3><a href="?video=another/content1.html">Название другого контента</a></h3>
+          <p>Краткое описание другого контента.</p>
+          <div class="actions">
+            <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <div id="video-container">
+      <!-- Здесь будет вставляться iframe с видео -->
+      <p>Выберите видео для просмотра.</p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoContainer = document.getElementById('video-container');
-            const params = new URLSearchParams(window.location.search);
-            const videoPath = params.get('video');
+    <footer>
+      <p>© 2023 Мой контент. Все права защищены.</p>
+    </footer>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoContainer = document.getElementById('video-container');
+      const contentContainer = document.querySelector('.container');
+      const backLink = document.getElementById('back-link');
+      const params = new URLSearchParams(window.location.search);
+      const videoPath = params.get('video');
 
-            if (videoPath) {
-                // Безопасность: Проверяем, что путь начинается с допустимых папок (calmkeeper, another, и т.д.)
-                if (videoPath.startsWith('calmkeeper/') || videoPath.startsWith('another/')) {
-                    const iframe = document.createElement('iframe');
-                    iframe.src = videoPath;
-                    iframe.title = 'Видео контент';
-                    iframe.frameborder = '0';
-                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                    iframe.allowFullscreen = true;
+      fetch('video-params.json') // Загрузка JSON файла
+        .then(response => response.json())
+        .then(videoParamsData => {
+          const youtubeParams = videoParamsData.youtube_params;
 
-                    videoContainer.innerHTML = ''; // Очищаем контейнер перед вставкой
-                    videoContainer.appendChild(iframe);
-                } else {
-                    videoContainer.innerHTML = '<p>Недопустимый путь к видео.</p>'; // Сообщение об ошибке, если путь неверный
+          if (videoPath) {
+            // Безопасность: Проверяем, что путь начинается с допустимых папок
+            if (videoPath.startsWith('calmkeeper/') || videoPath.startsWith('another/')) {
+              const videoId = getVideoIdFromPath(videoPath);
+              if (videoId) {
+                let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
+
+                for (const key in youtubeParams) {
+                  let value = youtubeParams[key];
+                  if (value === "%VIDEO_ID%") {
+                    value = videoId;
+                  }
+                  youtubeUrl += key + '=' + value + '&';
                 }
+                youtubeUrl = youtubeUrl.slice(0, -1); // Убрать последний '&'
+
+                const iframe = document.createElement('iframe');
+                iframe.src = youtubeUrl;
+                iframe.title = 'Видео контент';
+                iframe.frameborder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.allowFullscreen = true;
+
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(iframe);
+
+                contentContainer.classList.add('hidden');
+                videoContainer.classList.add('active');
+                backLink.classList.add('active');
+              } else {
+                videoContainer.innerHTML = '<p>Не удалось определить ID видео для: ' + videoPath + '</p>';
+              }
+
             } else {
-                videoContainer.innerHTML = '<p>Выберите видео из списка выше.</p>'; // Сообщение по умолчанию
+              videoContainer.innerHTML = '<p>Недопустимый путь к видео.</p>';
             }
+          } else {
+            contentContainer.classList.remove('hidden');
+            videoContainer.classList.remove('active');
+            backLink.classList.remove('active');
+            videoContainer.innerHTML = '<p>Выберите видео из списка выше.</p>';
+          }
         });
-    </script>
+
+      function getVideoIdFromPath(path) {
+        const pathParts = path.split('/');
+        const filename = pathParts[pathParts.length - 1];
+
+        if (filename === 'main_page.html') return 'ecG7jtDIOsA';
+        if (filename === 'onboarding_and_questions.html') return 'DmvX_x5BgM4';
+        return null; // Возвращаем null если ID не найден
+      }
+    });
+  </script>
 </body>
 </html>
