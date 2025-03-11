@@ -1,61 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>YouTube Embed</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: black;
-        }
-        iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-        }
-    </style>
+  <title>YouTube Embed</title>
+  <style>
+    body {
+    /* margin: 30%; */
+    overflow: hidden;
+    background-color: black;
+    /* font-family: Roboto; */
+    color: wheat;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 32pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    position: fixed;
+    /* top: 0px; */
+    /* bottom: 0px; */
+    height: 100%;
+    width: 100%;
+}
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="video-container">
-        <!-- iframe будет вставлен сюда -->
-    </div>
+  <div id="video-container">
+    <!-- iframe будет вставлен сюда -->
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoContainer = document.getElementById('video-container');
-            const params = new URLSearchParams(window.location.search);
-            const videoId = params.get('v');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoContainer = document.getElementById('video-container');
+      const params = new URLSearchParams(window.location.search);
+      const videoId = params.get('v');
 
-            if (videoId) {
-                fetch('video-params.json') // Загрузка JSON файла, путь изменен, предполагается что video-params.json на уровень выше embed.html
-                    .then(response => response.json())
-                    .then(videoParamsData => {
-                        const youtubeParams = videoParamsData.youtube_params;
-                        let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
+      if (videoId) {
+        fetch('video-params.json') // Загрузка JSON файла, путь изменен, предполагается что video-params.json на уровень выше embed.html
+          .then(response => response.json())
+          .then(videoParamsData => {
+            const youtubeParams = videoParamsData.youtube_params;
+            let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
 
-                        for (const key in youtubeParams) {
-                            let value = youtubeParams[key];
-                            if (value === "%VIDEO_ID%") {
-                                value = videoId;
-                            }
-                            youtubeUrl += key + '=' + value + '&';
-                        }
-                        youtubeUrl = youtubeUrl.slice(0, -1);
-
-                        const iframe = document.createElement('iframe');
-                        iframe.src = youtubeUrl;
-                        iframe.title = 'YouTube Video';
-                        iframe.frameborder = '0';
-                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                        iframe.allowFullscreen = true;
-
-                        videoContainer.appendChild(iframe);
-
-                    });
-            } else {
-                videoContainer.innerHTML = '<p>Неверный ID видео.</p>';
+            for (const key in youtubeParams) {
+              let value = youtubeParams[key];
+              if (value === "%VIDEO_ID%") {
+                value = videoId;
+              }
+              youtubeUrl += key + '=' + value + '&';
             }
-        });
-    </script>
+            youtubeUrl = youtubeUrl.slice(0, -1);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = youtubeUrl;
+            iframe.title = 'YouTube Video';
+            iframe.frameborder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+
+            videoContainer.appendChild(iframe);
+
+          });
+      } else {
+        videoContainer.innerHTML = '<p>There\'s no such video</p>';
+      }
+    });
+  </script>
 </body>
 </html>
