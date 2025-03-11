@@ -3,34 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мой контент</title>
+  <title>My Content</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif; /* Шрифты Material Design */
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa; /* Светлый фон */
+      background-color: #f8f9fa;
       color: #333;
-      display: flex; /* Flexbox для центрирования контента */
+      display: flex;
       justify-content: center;
-      align-items: flex-start; /* Выравнивание по верхнему краю */
-      min-height: 100vh; /* Минимальная высота viewport */
+      align-items: flex-start;
+      min-height: 100vh;
     }
 
     .container {
       width: 100%;
-      max-width: 960px; /* Максимальная ширина контента */
+      max-width: 960px;
       padding: 20px;
       box-sizing: border-box;
     }
 
     h1 {
-      color: #3f51b5; /* Основной цвет Material Design */
+      color: #3f51b5;
       border-bottom: 2px solid #3f51b5;
       padding-bottom: 10px;
       margin-bottom: 30px;
-      font-weight: 300; /* Более тонкий шрифт для заголовка */
+      font-weight: 300;
     }
 
     h2 {
@@ -43,12 +44,12 @@
     a {
       color: #3f51b5;
       text-decoration: none;
-      transition: color 0.3s ease; /* Плавная анимация цвета */
+      transition: color 0.3s ease;
     }
 
     a:hover {
       text-decoration: underline;
-      color: #5c6bc0; /* Немного светлее при наведении */
+      color: #5c6bc0;
     }
 
     .content-section {
@@ -57,23 +58,24 @@
 
     .content-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивная сетка */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
 
     .content-item {
-      background-color: #fff; /* Белый фон карточки */
-      border-radius: 8px; /* Скругленные углы карточки */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавные анимации */
-      display: flex; /* Flexbox для содержимого карточки */
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
       flex-direction: column;
+      cursor: pointer; /* Make the whole card clickable */
     }
 
     .content-item:hover {
-      transform: translateY(-3px); /* Небольшое поднятие при наведении */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Более выраженная тень при наведении */
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .content-item h3 {
@@ -88,11 +90,11 @@
     }
 
     .content-item .actions {
-      margin-top: auto; /* Прижимаем кнопки действий вниз карточки */
+      margin-top: auto;
     }
 
     .content-item .actions a {
-      display: inline-flex; /* Flexbox для кнопки "Смотреть" */
+      display: inline-flex;
       align-items: center;
       gap: 5px;
       font-weight: 500;
@@ -101,22 +103,77 @@
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #eee; /* Светло-серый фон для футера */
+      background-color: #eee;
       color: #777;
       border-top: 1px solid #ddd;
       margin-top: 50px;
     }
 
-    /* Стили для iframe-контейнера */
-    #video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
-      height: 0;
-      overflow: hidden;
-      margin-top: 30px;
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1001; /* Sit on top */
+      top: 0;
+      left: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed for modal content itself */
+      background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
     }
 
-    #video-container iframe {
+    .modal-content {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      background-color: #fefefe;
+      padding: 16pt 0;
+      border-radius: 8pt;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #3f51b5;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .close-button {
+      color: #aaa;
+      position: absolute; /* Positioned inside modal-content */
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+      line-height: 1;
+      display: flex; /* Center icon vertically and horizontally */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: whitesmoke;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /*
+    #modal-video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    */
+    #modal-video-container iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -124,125 +181,156 @@
       height: 100%;
       border: none;
     }
+
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <h1>Добро пожаловать!</h1>
-
-    <p>Здесь представлен мой контент. На данный момент доступно следующее:</p>
+    <h1>Welcome!</h1>
+    <p>Here is my content. Currently available:</p>
 
     <section class="content-section" id="calmkeeper-section">
       <h2>Calmkeeper</h2>
       <div class="content-grid">
         <div class="content-item">
-          <h3><a href="?video=calmkeeper/main_page.html">Главная страница</a></h3>
-          <p>Главная страница и анимация при попадании на неё</p>
+          <h3><a href="?video=calmkeeper/main_page.html">Main page</a></h3>
+          <p>Main page and animation when entering it</p>
           <div class="actions">
-            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
+            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Watch video</a>
           </div>
         </div>
         <div class="content-item">
-          <h3><a href="?video=calmkeeper/onboarding_and_questions.html">Онбординг и анкета</a></h3>
-          <p>Это onboarding и анкета при первом входе в приложение </p>
+          <h3><a href="?video=calmkeeper/onboarding_and_questions.html">Onboarding and questionnaire</a></h3>
+          <p>This is onboarding and questionnaire upon first entering the application</p>
           <div class="actions">
-            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Смотреть видео</a>
+            <a href="?video=calmkeeper/onboarding_and_questions.html"><i class="material-icons">play_circle_filled</i> Watch video</a>
           </div>
         </div>
-        <!-- Здесь можно добавить другие видео из Calmkeeper в виде content-item -->
+        <!-- You can add other videos from Calmkeeper as content-item here -->
       </div>
     </section>
 
-    <!-- Пример другого раздела контента (раскомментируйте, когда понадобится)
+    <!-- Example of another content section (uncomment when needed)
     <section class="content-section" id="another-section">
-      <h2>Другой раздел контента</h2>
+      <h2>Another content section</h2>
       <div class="content-grid">
         <div class="content-item">
-          <h3><a href="?video=another/content1.html">Название другого контента</a></h3>
-          <p>Краткое описание другого контента.</p>
+          <h3><a href="?video=another/content1.html">Title of another content</a></h3>
+          <p>Brief description of another content.</p>
           <div class="actions">
-            <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Подробнее</a>
+            <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Details</a>
           </div>
         </div>
       </div>
     </section>
     -->
 
-    <div id="video-container">
-      <!-- Здесь будет вставляться iframe с видео -->
-      <p>Выберите видео для просмотра.</p>
-    </div>
-
-    <footer>
-      <p>© 2023 Мой контент. Все права защищены.</p>
-    </footer>
   </div>
+
+  <div id="video-modal" class="modal">
+    <div class="modal-content">
+      <button type="button" class="close-button" aria-label="Close">
+        <i class="material-icons">close</i>
+      </button>
+      <div id="modal-video-container">
+        <!-- Video iframe will be inserted here -->
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const videoContainer = document.getElementById('video-container');
-      const contentContainer = document.querySelector('.container');
-      const backLink = document.getElementById('back-link');
-      const params = new URLSearchParams(window.location.search);
-      const videoPath = params.get('video');
+      const modal = document.getElementById('video-modal');
+      const modalVideoContainer = document.getElementById('modal-video-container');
+      const closeModalButton = document.querySelector('.close-button');
 
-      fetch('video-params.json') // Загрузка JSON файла
+      // Fetch video parameters from JSON file
+      fetch('video-params.json')
         .then(response => response.json())
         .then(videoParamsData => {
           const youtubeParams = videoParamsData.youtube_params;
 
-          if (videoPath) {
-            // Безопасность: Проверяем, что путь начинается с допустимых папок
-            if (videoPath.startsWith('calmkeeper/') || videoPath.startsWith('another/')) {
-              const videoId = getVideoIdFromPath(videoPath);
-              if (videoId) {
-                let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
-
-                for (const key in youtubeParams) {
-                  let value = youtubeParams[key];
-                  if (value === "%VIDEO_ID%") {
-                    value = videoId;
-                  }
-                  youtubeUrl += key + '=' + value + '&';
+          // Function to open modal with video
+          function openVideoModal(videoPath) {
+            const videoId = getVideoIdFromPath(videoPath);
+            if (videoId) {
+              let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
+              for (const key in youtubeParams) {
+                let value = youtubeParams[key];
+                if (value === "%VIDEO_ID%") {
+                  value = videoId;
                 }
-                youtubeUrl = youtubeUrl.slice(0, -1); // Убрать последний '&'
-
-                const iframe = document.createElement('iframe');
-                iframe.src = youtubeUrl;
-                iframe.title = 'Видео контент';
-                iframe.frameborder = '0';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                iframe.allowFullscreen = true;
-
-                videoContainer.innerHTML = '';
-                videoContainer.appendChild(iframe);
-
-                contentContainer.classList.add('hidden');
-                videoContainer.classList.add('active');
-                backLink.classList.add('active');
-              } else {
-                videoContainer.innerHTML = '<p>Не удалось определить ID видео для: ' + videoPath + '</p>';
+                youtubeUrl += key + '=' + value + '&';
               }
+              youtubeUrl = youtubeUrl.slice(0, -1);
 
+              const iframe = document.createElement('iframe');
+              iframe.src = youtubeUrl;
+              iframe.title = 'Video content';
+              iframe.frameborder = '0';
+              iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+              iframe.allowFullscreen = true;
+
+              modalVideoContainer.innerHTML = '';
+              modalVideoContainer.appendChild(iframe);
+              modal.style.display = "block";
             } else {
-              videoContainer.innerHTML = '<p>Недопустимый путь к видео.</p>';
+              alert('Could not determine video ID for: ' + videoPath);
             }
-          } else {
-            contentContainer.classList.remove('hidden');
-            videoContainer.classList.remove('active');
-            backLink.classList.remove('active');
-            videoContainer.innerHTML = '<p>Выберите видео из списка выше.</p>';
           }
+
+          // Function to close modal
+          function closeVideoModal() {
+            modal.style.display = "none";
+            modalVideoContainer.innerHTML = '';
+          }
+
+          // Close modal on close button click
+          closeModalButton.addEventListener('click', closeVideoModal);
+
+          // Close modal when clicking outside of it
+          window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+              closeVideoModal();
+            }
+          });
+
+          function getVideoIdFromPath(path) {
+            const pathParts = path.split('/');
+            const filename = pathParts[pathParts.length - 1];
+
+            if (filename === 'main_page.html') return 'ecG7jtDIOsA';
+            if (filename === 'onboarding_and_questions.html') return 'DmvX_x5BgM4';
+            return null;
+          }
+
+          // Handle clicks on "Watch video" links to open modal
+          const videoLinks = document.querySelectorAll('.content-item .actions a');
+          videoLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+              event.preventDefault();
+              const videoPath = new URL(this.href, document.baseURI).searchParams.get('video');
+              if (videoPath) {
+                openVideoModal(videoPath);
+              }
+            });
+          });
+
+          // Make content cards clickable
+          const contentItems = document.querySelectorAll('.content-item');
+          contentItems.forEach(item => {
+            item.addEventListener('click', function() {
+              const link = this.querySelector('.actions a');
+              if (link) {
+                const videoPath = new URL(link.href, document.baseURI).searchParams.get('video');
+                if (videoPath) {
+                  openVideoModal(videoPath);
+                }
+              }
+            });
+          });
+
         });
-
-      function getVideoIdFromPath(path) {
-        const pathParts = path.split('/');
-        const filename = pathParts[pathParts.length - 1];
-
-        if (filename === 'main_page.html') return 'ecG7jtDIOsA';
-        if (filename === 'onboarding_and_questions.html') return 'DmvX_x5BgM4';
-        return null; // Возвращаем null если ID не найден
-      }
     });
   </script>
 </body>
