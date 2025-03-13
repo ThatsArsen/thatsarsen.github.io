@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Drive Embed</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+    body p{
+      /* margin: 30%; */
+      overflow: hidden;
+      background-color: black;
+      /* font-family: Roboto; */
+      color: wheat;
+      font-family: 'Roboto', 'Arial', sans-serif;
+      font-size: 32pt;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      align-content: center;
+      position: fixed;
+      /* top: 0px; */
+      /* bottom: 0px; */
+      height: 100%;
+      width: 100%;
+    }
+
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <!-- iframe will be inserted here -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoContainer = document.getElementById('video-container');
+      const params = new URLSearchParams(window.location.search);
+      const driveFileId = params.get('v'); // Get Google Drive file ID from URL parameter
+
+      if (driveFileId) {
+        const googleDrivePreviewUrl = `https://drive.google.com/file/d/${driveFileId}/preview?start=1&autoplay=1`; // Construct Google Drive preview URL
+
+        const iframe = document.createElement('iframe');
+        iframe.src = googleDrivePreviewUrl;
+        iframe.title = 'Google Drive Video';
+        iframe.frameborder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowfullscreen = true; // Allow fullscreen mode
+
+        videoContainer.appendChild(iframe);
+
+      } else {
+        videoContainer.innerHTML = '<p>There\'s no such video</p>'; // Error message for missing drive_id
+      }
+    });
+  </script>
+</body>
+</html>
