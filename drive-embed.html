@@ -47,7 +47,7 @@
       const driveFileId = params.get('v'); // Get Google Drive file ID from URL parameter
 
       if (driveFileId) {
-        const googleDrivePreviewUrl = `https://drive.google.com/file/d/${driveFileId}/preview?start=1&autoplay=1`; // Construct Google Drive preview URL
+        const googleDrivePreviewUrl = `https://drive.google.com/file/d/${driveFileId}/preview`; // Construct Google Drive preview URL
 
         const iframe = document.createElement('iframe');
         iframe.src = googleDrivePreviewUrl;
