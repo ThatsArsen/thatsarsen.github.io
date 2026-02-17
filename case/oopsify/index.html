@@ -78,6 +78,23 @@
                 gap: var(--space-m);
                 margin-top: var(--space-l);
             }
+
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-m);
+                margin-top: var(--space-l);
+            }
+
+            .grid-full {
+                grid-column: 1 / -1;
+            }
+
+            @media (max-width: 768px) {
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
         </style>
 
         <header class="page-header">
@@ -96,52 +113,66 @@
                 </div>
             </div>
 
-            <img src="../../images/cover_ofoopsify.png" alt="Oopsify Cover" class="hero-cover">
+            <img src="../../images/cover_ofoopsify.png" alt="Oopsify Cover" class="hero-cover"
+                style="width: 100vw; margin-left: calc(50% - 50vw); max-width: none; border-radius: 0;">
 
-            <div class="callout accent-7">
-                <div class="callout-icon">🟫</div>
-                <div class="callout-content">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <strong>Case in progress, done: 50%</strong>
-                        <span>▬▬▬▬▬▭▭▭▭▭</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="column-list">
-                <div class="column">
-                    <a href="#" class="callout accent-2" style="text-decoration:none;">
-                        <div class="callout-icon">🍎</div>
-                        <div class="callout-content">
-                            <strong>Oopsify on App Store</strong>
+            <div class="info-grid">
+                <div class="callout accent-7 grid-full">
+                    <div class="callout-icon">🟫</div>
+                    <div class="callout-content">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong>Case in progress, done: 50%</strong>
+                            <span>▬▬▬▬▬▭▭▭▭▭</span>
                         </div>
-                    </a>
-                </div>
-                <div class="column">
-                    <div class="callout accent-1">
-                        <div class="callout-icon">🤖</div>
-                        <div class="callout-content">
-                            <strong>Oopsify on Google Play Store</strong>
-                            <p style="font-size: 0.75rem;">(no link yet, in closed beta)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="callout accent-5">
-                <div class="callout-icon">🌐</div>
-                <div class="callout-content">
-                    Choose language / Выберите язык: <br>
-                    <a href="#">🇷🇺 Russian</a> / <a href="#">🇬🇧 English</a>
+                <a href="https://bit.ly/hi_oopsify_app" target="_blank" class="callout accent-2"
+                    style="text-decoration:none;">
+                    <div class="callout-icon">🍎</div>
+                    <div class="callout-content">
+                        <strong>Oopsify on App Store</strong>
+                    </div>
+                </a>
+
+                <div class="callout accent-1">
+                    <div class="callout-icon">🤖</div>
+                    <div class="callout-content">
+                        <strong>Oopsify on Google Play Store</strong>
+                        <p style="font-size: 0.75rem;">(no link yet, in closed beta)</p>
+                    </div>
+                </div>
+
+                <a href="https://web.archive.org/web/20250523145212/https://oopsify.org/" target="_blank"
+                    class="callout accent-4" style="text-decoration:none;">
+                    <div class="callout-icon">🌐</div>
+                    <div class="callout-content">
+                        <strong>Site of Oopsify / Сайт Oopsify</strong>
+                    </div>
+                </a>
+
+                <div class="callout accent-5">
+                    <div class="callout-icon">🌐</div>
+                    <div class="callout-content">
+                        Choose language / Выберите язык: <br>
+                        <a href="#">🇷🇺 Russian</a> / <a href="#">🇬🇧 English</a>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <div class="callout accent-6" style="margin-top: var(--space-xl); margin-bottom: var(--space-l);">
+            <div class="callout-content">
+                <strong>Oopsify AI — приложение, которое генерирует видео или картинку на основе фото и текстового
+                    описания. Плюс есть и заготовленные промпты-пресеты (эмоджи пресеты).</strong>
+            </div>
+        </div>
+
         <section id="results">
-            <h2>✅ Результаты (Results)</h2>
+            <h2>✅ Результаты</h2>
             <div class="column-list">
                 <div class="column">
                     <p>После обновления дизайна в феврале и запуска рекламной компании выручка выросла на +393% к марту
@@ -180,32 +211,124 @@
 
         <section id="design">
             <h2>🔮 Дизайн</h2>
-            <p>На момент моего захода в проект уже была готова первая сырая версия приложения. Моей задачей было
-                доработать дизайн, согласовывать продуктовые решения и вести приложение к публикации.</p>
+            <p>На момент моего захода в проект уже была готова первая сырая версия приложения, она уже тестировалась в
+                TestFlight.
+                Моей задачей было доработать дизайн, согласовывать продуктовые решения и вести приложение к публикации в
+                открытый доступ и началу рекламной компании.</p>
+            <p>Я спроектировал дополнительные экраны и флоу для них: главный экран-витрину, модалку оценки и обратной
+                связи, экран генерации изображений и экран галереи.
+                Плюс корректировал и совершенствовал уже существующие экраны генерации видео, генерации фото, пейволл и
+                другие.</p>
+
+            <h3>Overview (главный экран)</h3>
+            <p>После изучения конкурентов стало ясно, что все используют экран-витрину со всеми основными функциями. У
+                гигантов витрин нет, но у приложений для новичков (наш случай) витрины повсеместно.</p>
 
             <div class="image-block">
                 <img src="../../images/1_1_-_Overview_page_v2.png" alt="Overview Page Design">
-                <p class="caption">Спроектировал экран Overview, скомбинировав множество разных функций для простоты.
-                </p>
+                <p class="caption">Спроектировал экран Overview, скомбинировав множество разных функций для простоты (в
+                    первых итерациях карточек было вдвое больше).
+                    В последней итерации спрятал выбор “из чего генерировать” внутрь экрана генерации, оставив витрину
+                    чистой.</p>
             </div>
 
-            <h3>Проработка флоу</h3>
-            <p>Я спроектировал дополнительные экраны и флоу для них: главный экран-витрину, модалку оценки и обратной
-                связи, экран генерации изображений и экран галереи.</p>
+            <p>На самом экране остались парочка карточек с самым соком. На карточках сделал иллюстрации для большей
+                понятности. Ниже идет блок предпросмотра эффектов.</p>
+        </section>
+
+        <section id="process">
+            <h2>🏗️ Процесс</h2>
+            <p>Получил продукт после другого дизайнера, вникал во всё сам. Проект в Figma мне достался в немного
+                хаотичном виде,
+                первым делом всё причесал, закомпонентил всё, что этого требовало, принёс свои кнопки и некоторые другие
+                готовые элементы из моего личного UI-кита компонентов.</p>
         </section>
 
         <section id="metrics">
-            <h2>📊 Показатели</h2>
-            <p>Новый бесплатный функционал увеличил метрики вовлечённости пользователей (user engagement):</p>
-            <ul>
-                <li>Retention Rate: +30%</li>
-                <li>Session Duration: +45%</li>
-                <li>Sessions per User: +25%</li>
-            </ul>
+            <h2>💹 Показатели</h2>
+            <p>После доведения до ума дизайна, проектирования и разработки главного экрана приложение было обновлено и
+                началась рекламная компания.
+                По мере притока новых пользователей вводились и новые фичи (например, генерация фото на основе промпта),
+                что можно назвать одной из причин хорошего роста.</p>
 
+            <div class="callout accent-3">
+                <div class="callout-icon">📊</div>
+                <div class="callout-content">
+                    <strong>Новый бесплатный функционал увеличил метрики вовлечённости (User Engagement):</strong>
+                    <ul>
+                        <li>Retention Rate: +30%</li>
+                        <li>Session Duration: +45%</li>
+                        <li>Sessions per User: +25%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="margin-top: var(--space-l);">Коммерческие метрики тоже неплохо себя показали. Ниже кратко инсайты
+                о платных подписках за март-апрель 2025:</p>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-l);">
+                (Это только первые месяцы работы приложения, поэтому цифры скромные, в будущем ожидается большее
+                количество)
+            </p>
+
+            <h3>Значительный рост выручки</h3>
+            <p>После запуска обновленного дизайна и рекламных кампаний в марте, выручка значительно выросла: с $34.77 в
+                феврале до $171.67 в марте (+393%) и достигла пика в $417.46 в апреле.</p>
             <div class="image-block">
                 <img src="../../images/1_-_revenue.png" alt="Revenue Chart">
                 <p class="caption">График роста выручки за март-апрель 2025.</p>
+            </div>
+
+            <h3>Удвоение MRR</h3>
+            <p>Ежемесячная регулярная выручка (MRR) выросла более чем в два раза, увеличившись со $139.07 в феврале до
+                $283.55 в марте.</p>
+            <div class="image-block">
+                <img src="../../images/2_-_mrr.png" alt="MRR Chart">
+            </div>
+
+            <h3>Резкий приток новых пользователей</h3>
+            <p>В марте число новых пользователей начало расти: если в феврале было 4, то в марте уже 15, а в апреле и
+                мае пришло 193 и 247 новых юзеров соответственно.</p>
+            <div class="image-block">
+                <img src="../../images/3_-_new_cutomers_v2.png" alt="New Customers Chart">
+            </div>
+
+            <h3>Активных подписок стало вдвое больше</h3>
+            <p>Количество платных подписчиков увеличилось с 4 в феврале до 8 уже в марте, и этот показатель держится.
+            </p>
+            <div class="image-block">
+                <img src="../../images/4_-_active_subscription.png" alt="Active Subscriptions Chart">
+            </div>
+
+            <h3>ARR (годовая регулярная выручка) тоже удвоился</h3>
+            <p>В марте этот показатель подскочил с $1668 до $3402, что говорит о хорошем потенциале.</p>
+            <div class="image-block">
+                <img src="../../images/5_-_arr.png" alt="ARR Chart">
+            </div>
+
+            <h3>Платный функционал ценится пользователями</h3>
+            <p>В марте LTV (Lifetime Value) платящего клиента за 30 дней достиг $36.05, что больше, чем $26 в феврале.
+            </p>
+            <div class="image-block">
+                <img src="../../images/6_-_realizing_LTV_per_paying_customer.png" alt="LTV Chart">
+            </div>
+
+            <div class="column-list" style="margin-top: var(--space-xl);">
+                <div class="column">
+                    <div class="stat-item">
+                        <span class="stat-value">0%</span>
+                        <span class="stat-label">Refunt Rate (Возвратов)</span>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">За всё время не было ни одного возврата средств.
+                    </p>
+                </div>
+                <div class="column">
+                    <div class="stat-item">
+                        <span class="stat-value">75%</span>
+                        <span class="stat-label">Retention Sentiment</span>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Текущих активных подписчиков настроены на
+                        продление подписки.</p>
+                </div>
             </div>
         </section>
 
