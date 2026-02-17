@@ -1,0 +1,315 @@
+/* Overview Page Layout: Sidebar + Content */
+
+/* ─── Override body constraints from main.css ─── */
+body.overview-body {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#overview-app {
+    display: flex !important;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ─── Sidebar ─── */
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    flex-shrink: 0;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-light);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: var(--space-l) var(--space-m) var(--space-m);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    padding: 0;
+}
+
+.sidebar-header p {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: var(--space-m);
+    border-top: 1px solid var(--border-light);
+}
+
+.theme-toggle-btn-small {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background var(--transition-fast);
+}
+
+.theme-toggle-btn-small:hover {
+    background: var(--bg-tertiary);
+}
+
+/* ─── Tree Navigation ─── */
+.tree-nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.tree-nav>ul {
+    padding: var(--space-s) 0;
+}
+
+.tree-nav li {
+    margin: 0;
+}
+
+.tree-item {
+    padding: 7px var(--space-m);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background var(--transition-fast);
+    user-select: none;
+}
+
+.tree-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.tree-leaf {
+    padding: 6px var(--space-m) 6px calc(var(--space-m) + 24px);
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: background var(--transition-fast), color var(--transition-fast);
+    user-select: none;
+    list-style: none;
+}
+
+.tree-leaf:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.tree-leaf.active-leaf {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+.tree-leaf-l2 {
+    padding-left: calc(var(--space-m) + 44px);
+}
+
+.tree-group {
+    display: none;
+    overflow: hidden;
+}
+
+.tree-group.open {
+    display: block;
+}
+
+.tree-icon {
+    font-size: 0.85rem;
+    width: 18px;
+    text-align: center;
+}
+
+/* ─── Content Area ─── */
+.content-area {
+    flex: 1;
+    padding: var(--space-xl) var(--space-xxl);
+    overflow-y: auto;
+    min-width: 0;
+}
+
+.content-area h1 {
+    margin-top: 0;
+    font-size: 1.75rem;
+    margin-bottom: var(--space-m);
+    border: none;
+    padding: 0;
+}
+
+/* ─── Overview Sections: TAB SWITCHING (hide all, show active) ─── */
+.overview-section {
+    display: block;
+    margin-bottom: var(--space-xxl);
+    /* Add spacing between sections */
+}
+
+.overview-section.active {
+    display: block !important;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Color Swatches ─── */
+.palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 4px;
+    margin-bottom: var(--space-l);
+}
+
+.palette-grid.full-row {
+    grid-template-columns: repeat(11, 1fr);
+}
+
+.swatch {
+    height: 56px;
+    border-radius: var(--radius-s);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: flex-end;
+    padding: 4px 6px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.color-row-container h4 {
+    margin: var(--space-m) 0 4px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border: none;
+    padding: 0;
+}
+
+.color-row-container h4:first-child {
+    margin-top: 0;
+}
+
+/* ─── Semantic accent grid ─── */
+.accent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.accent-swatch {
+    height: 72px;
+    border-radius: var(--radius-m);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.accent-swatch small {
+    font-size: 9px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* ─── Demo row (flex wrapper) ─── */
+.demo-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ─── Spacing / Radius demos ─── */
+.spacing-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    margin-bottom: var(--space-s);
+}
+
+.spacing-bar {
+    height: 20px;
+    background: var(--accent-primary);
+    border-radius: 2px;
+}
+
+.spacing-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    min-width: 90px;
+}
+
+.radius-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-primary);
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* Shadow demo */
+.shadow-demo {
+    width: 120px;
+    height: 80px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Transition demo */
+.transition-demo {
+    width: 100px;
+    height: 100px;
+    background: var(--accent-primary);
+    border-radius: var(--radius-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.transition-demo:hover {
+    transform: scale(1.15);
+}

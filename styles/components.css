@@ -1,0 +1,220 @@
+/* Component Styles */
+
+/* Callout */
+.callout {
+    display: flex;
+    gap: var(--space-m);
+    padding: var(--space-m);
+    border-radius: var(--radius-m);
+    margin-bottom: var(--space-m);
+    align-items: flex-start;
+}
+
+.callout-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.callout-content {
+    flex: 1;
+}
+
+/* Callout accent colors → defined in semantic_tokens.css as .accent-N */
+/* Backward-compat aliases (DEPRECATED — use .accent-N instead): */
+.callout-gray {
+    background-color: var(--surface-accent-1);
+    color: var(--text-accent-1);
+}
+
+.callout-blue {
+    background-color: var(--surface-accent-2);
+    color: var(--text-accent-2);
+}
+
+.callout-green {
+    background-color: var(--surface-accent-3);
+    color: var(--text-accent-3);
+}
+
+.callout-yellow {
+    background-color: var(--surface-accent-4);
+    color: var(--text-accent-4);
+}
+
+.callout-purple {
+    background-color: var(--surface-accent-5);
+    color: var(--text-accent-5);
+}
+
+.callout-pink {
+    background-color: var(--surface-accent-6);
+    color: var(--text-accent-6);
+}
+
+.callout-brown {
+    background-color: var(--surface-accent-7);
+    color: var(--text-accent-7);
+}
+
+/* ─── Cards ─── */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-l);
+}
+
+.card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-m);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-body {
+    padding: var(--space-m);
+}
+
+.card-title {
+    margin: 0 0 var(--space-xs);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.card-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 var(--space-m);
+}
+
+
+/* ─── Stat Items ─── */
+/* Styled to match Oopsify but gray/neutral by default */
+.stat-item {
+    padding: var(--space-m);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-m);
+    border: 1px solid var(--border-light);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    /* Default to neutral */
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Optional: Allow accent text on stat value via helper class or inline style if needed, 
+   but default component is gray per user request. 
+   Can add .text-accent-X helper if needed later. */
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 2px var(--space-s);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: var(--space-xs);
+    margin-bottom: var(--space-xs);
+}
+
+/* Badge accent colors → defined in semantic_tokens.css as .accent-N */
+/* Backward-compat aliases (DEPRECATED — use .accent-N instead): */
+.badge-gray {
+    background-color: var(--surface-accent-1);
+    color: var(--text-accent-1);
+}
+
+.badge-blue {
+    background-color: var(--surface-accent-2);
+    color: var(--text-accent-2);
+}
+
+.badge-green {
+    background-color: var(--surface-accent-3);
+    color: var(--text-accent-3);
+}
+
+.badge-yellow {
+    background-color: var(--surface-accent-4);
+    color: var(--text-accent-4);
+}
+
+.badge-purple {
+    background-color: var(--surface-accent-5);
+    color: var(--text-accent-5);
+}
+
+.badge-pink {
+    background-color: var(--surface-accent-6);
+    color: var(--text-accent-6);
+}
+
+.badge-brown {
+    background-color: var(--surface-accent-7);
+    color: var(--text-accent-7);
+}
+
+/* Theme Switcher Button */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background-color: var(--accent-primary);
+    color: var(--text-inverse);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Page Header */
+header.page-header {
+    margin-bottom: var(--space-xxl);
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: var(--space-l);
+    margin-bottom: var(--space-l);
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-xl);
+    background-color: var(--bg-tertiary);
+}

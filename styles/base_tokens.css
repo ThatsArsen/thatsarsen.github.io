@@ -1,0 +1,126 @@
+/* Primitive Tokens (Base Level) */
+:root {
+    /* Grays - Reverse numbering (100 is dark, 900 is light) */
+    --base-gray-050: #050505;
+    --base-gray-100: #121212;
+    --base-gray-200: #1e1e1e;
+    --base-gray-300: #2c2c2c;
+    --base-gray-400: #3f3f3f;
+    --base-gray-500: #555555;
+    --base-gray-600: #777777;
+    --base-gray-700: #aaaaaa;
+    --base-gray-800: #d0d0d0;
+    --base-gray-900: #f5f5f5;
+    --base-gray-950: #ffffff;
+
+    /* Blue Palette */
+    --base-blue-050: #02040a;
+    --base-blue-100: #0a192f;
+    --base-blue-200: #1a237e;
+    --base-blue-300: #283593;
+    --base-blue-400: #303f9f;
+    --base-blue-500: #3f51b5;
+    --base-blue-600: #5c6bc0;
+    --base-blue-700: #7986cb;
+    --base-blue-800: #9fa8da;
+    --base-blue-900: #c5cae9;
+    --base-blue-950: #e8eaf6;
+
+    /* Teal Palette */
+    --base-teal-050: #001a11;
+    --base-teal-100: #002518;
+    --base-teal-200: #004d40;
+    --base-teal-300: #00695c;
+    --base-teal-400: #00796b;
+    --base-teal-500: #00897b;
+    --base-teal-600: #009688;
+    --base-teal-700: #26a69a;
+    --base-teal-800: #4db6ac;
+    --base-teal-900: #80cbc4;
+    --base-teal-950: #e0f2f1;
+
+    /* Accent Palettes (Notion-style highlights) - Simplified expansion */
+    /* Yellow */
+    --base-yellow-050: #1a1600;
+    --base-yellow-100: #332b00;
+    --base-yellow-200: #4d4000;
+    --base-yellow-300: #665600;
+    --base-yellow-400: #806c00;
+    --base-yellow-500: #e2b900;
+    --base-yellow-600: #f7ce00;
+    --base-yellow-700: #ffde33;
+    --base-yellow-800: #ffea66;
+    --base-yellow-900: #fdf2bb;
+    --base-yellow-950: #fffceb;
+
+    /* Green */
+    --base-green-050: #001508;
+    --base-green-100: #002b11;
+    --base-green-200: #004d1f;
+    --base-green-300: #00702d;
+    --base-green-400: #00933b;
+    --base-green-500: #2e7d32;
+    --base-green-600: #43a047;
+    --base-green-700: #66bb6a;
+    --base-green-800: #81c784;
+    --base-green-900: #e8f1ec;
+    --base-green-950: #f1f8f4;
+
+    /* Purple */
+    --base-purple-050: #16001a;
+    --base-purple-100: #2b0033;
+    --base-purple-200: #4a005c;
+    --base-purple-300: #6a0085;
+    --base-purple-400: #7b1fa2;
+    --base-purple-500: #8e24aa;
+    --base-purple-600: #ab47bc;
+    --base-purple-700: #ce93d8;
+    --base-purple-800: #e1bee7;
+    --base-purple-900: #f3ebf9;
+    --base-purple-950: #f9f4fd;
+
+    /* Pink */
+    --base-pink-050: #1a000d;
+    --base-pink-100: #33001a;
+    --base-pink-200: #640032;
+    --base-pink-300: #880e4f;
+    --base-pink-400: #ad1457;
+    --base-pink-500: #d81b60;
+    --base-pink-600: #ec407a;
+    --base-pink-700: #f06292;
+    --base-pink-800: #f48fb1;
+    --base-pink-900: #fae9f1;
+    --base-pink-950: #fdf2f7;
+
+    /* Brown */
+    --base-brown-050: #160d08;
+    --base-brown-100: #2b1a11;
+    --base-brown-200: #3e2723;
+    --base-brown-300: #4e342e;
+    --base-brown-400: #5d4037;
+    --base-brown-500: #6d4c41;
+    --base-brown-600: #8d6e63;
+    --base-brown-700: #a1887f;
+    --base-brown-800: #bcaaa4;
+    --base-brown-900: #f5ede9;
+    --base-brown-950: #faf7f5;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-s: 8px;
+    --space-m: 16px;
+    --space-l: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+
+    /* Border Radius */
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-l: 12px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}

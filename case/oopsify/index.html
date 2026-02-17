@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oopsify — AI Video Generator | Case Study</title>
+    <script>
+        (function () {
+            const theme = localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add(theme + '-theme');
+        })();
+    </script>
+    <link rel="stylesheet" href="../../styles/base_tokens.css?v=4">
+    <link rel="stylesheet" href="../../styles/semantic_tokens.css?v=4">
+    <link rel="stylesheet" href="../../styles/main.css?v=4">
+    <link rel="stylesheet" href="../../styles/components.css?v=4">
+</head>
+
+<body class="dark-theme oopsify-theme">
+    <div id="app">
+        <style>
+            :root {
+                /* Oopsify specific brand override */
+                --brand-oopsify: #003322;
+                --brand-oopsify-text: #e0f2f1;
+            }
+
+            /* Dark theme (default for case page) */
+            .dark-theme.oopsify-theme {
+                --bg-primary: #001a11;
+                --bg-secondary: #002518;
+                --bg-tertiary: #003525;
+                --text-primary: #e0f2f1;
+                --text-secondary: #80cbc4;
+                --accent-primary: #00bfa5;
+                --border-light: rgba(0, 191, 165, 0.2);
+            }
+
+            /* Light theme — Oopsify brand adapted for light mode */
+            .light-theme.oopsify-theme {
+                --bg-primary: #f2faf8;
+                --bg-secondary: #e0f2f1;
+                --bg-tertiary: #cce6e2;
+                --text-primary: #003322;
+                --text-secondary: #4a7a6e;
+                --accent-primary: #00897b;
+                --border-light: rgba(0, 137, 123, 0.2);
+            }
+
+            .progress-bar {
+                width: 100%;
+                height: 12px;
+                background: var(--bg-tertiary);
+                border-radius: var(--radius-full);
+                overflow: hidden;
+                margin-top: var(--space-s);
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: var(--base-brown-600);
+                width: 50%;
+                /* 50% as in the image */
+                transition: width 1s ease-out;
+            }
+
+            .hero-cover {
+                width: 100%;
+                border-radius: var(--radius-l);
+                margin-bottom: var(--space-xl);
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: var(--space-m);
+                margin-top: var(--space-l);
+            }
+        </style>
+
+        <header class="page-header">
+            <div class="profile-section">
+                <div class="profile-img"
+                    style="display:flex; align-items:center; justify-content:center; font-size: 2rem;">🌀</div>
+                <div>
+                    <h1>Oopsify — AI Video Generator</h1>
+                    <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+                        <span class="badge accent-5">Brand</span>
+                        <span class="badge accent-6">Icon design</span>
+                        <span class="badge accent-5">Motion design</span>
+                        <span class="badge accent-3">Product design</span>
+                        <span class="badge accent-3">Mobile</span>
+                    </div>
+                </div>
+            </div>
+
+            <img src="../../images/cover_ofoopsify.png" alt="Oopsify Cover" class="hero-cover">
+
+            <div class="callout accent-7">
+                <div class="callout-icon">🟫</div>
+                <div class="callout-content">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong>Case in progress, done: 50%</strong>
+                        <span>▬▬▬▬▬▭▭▭▭▭</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column-list">
+                <div class="column">
+                    <a href="#" class="callout accent-2" style="text-decoration:none;">
+                        <div class="callout-icon">🍎</div>
+                        <div class="callout-content">
+                            <strong>Oopsify on App Store</strong>
+                        </div>
+                    </a>
+                </div>
+                <div class="column">
+                    <div class="callout accent-1">
+                        <div class="callout-icon">🤖</div>
+                        <div class="callout-content">
+                            <strong>Oopsify on Google Play Store</strong>
+                            <p style="font-size: 0.75rem;">(no link yet, in closed beta)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout accent-5">
+                <div class="callout-icon">🌐</div>
+                <div class="callout-content">
+                    Choose language / Выберите язык: <br>
+                    <a href="#">🇷🇺 Russian</a> / <a href="#">🇬🇧 English</a>
+                </div>
+            </div>
+        </header>
+
+        <section id="results">
+            <h2>✅ Результаты (Results)</h2>
+            <div class="column-list">
+                <div class="column">
+                    <p>После обновления дизайна в феврале и запуска рекламной компании выручка выросла на +393% к марту
+                        и достигла пика в апреле (+1202,33% относительно февраля).</p>
+                    <p>Ежемесячная регулярная выручка (MRR) выросла более чем в два раза.</p>
+                </div>
+                <div class="column">
+                    <strong>👯 Команда</strong>
+                    <p>Я в роли продуктового дизайнера, один фронтенд, один бекенд, один менеджер/стейхолдер и один
+                        тестировщик.</p>
+                    <strong>🤹‍♂️ Выполнял</strong>
+                    <p>Спроектировал главный экран, экраны обратной связи, галерею. Обновил дизайн, модернизировал
+                        старые компоненты и создал новые, структурировал файлы, организовал компоненты в UI Kit.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value">+393%</span>
+                    <span class="stat-label">Revenue March</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">+1202%</span>
+                    <span class="stat-label">Peak April</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">x2</span>
+                    <span class="stat-label">MRR Growth</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">450+</span>
+                    <span class="stat-label">New Users</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="design">
+            <h2>🔮 Дизайн</h2>
+            <p>На момент моего захода в проект уже была готова первая сырая версия приложения. Моей задачей было
+                доработать дизайн, согласовывать продуктовые решения и вести приложение к публикации.</p>
+
+            <div class="image-block">
+                <img src="../../images/1_1_-_Overview_page_v2.png" alt="Overview Page Design">
+                <p class="caption">Спроектировал экран Overview, скомбинировав множество разных функций для простоты.
+                </p>
+            </div>
+
+            <h3>Проработка флоу</h3>
+            <p>Я спроектировал дополнительные экраны и флоу для них: главный экран-витрину, модалку оценки и обратной
+                связи, экран генерации изображений и экран галереи.</p>
+        </section>
+
+        <section id="metrics">
+            <h2>📊 Показатели</h2>
+            <p>Новый бесплатный функционал увеличил метрики вовлечённости пользователей (user engagement):</p>
+            <ul>
+                <li>Retention Rate: +30%</li>
+                <li>Session Duration: +45%</li>
+                <li>Sessions per User: +25%</li>
+            </ul>
+
+            <div class="image-block">
+                <img src="../../images/1_-_revenue.png" alt="Revenue Chart">
+                <p class="caption">График роста выручки за март-апрель 2025.</p>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: var(--space-xxl); padding-bottom: var(--space-xl);">
+            <hr>
+            <p style="font-size: 0.75rem; color: var(--text-secondary);">Designed & Developed with ❤️ for Oopsify Case
+                Study</p>
+        </footer>
+    </div>
+
+    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">🌓</button>
+
+    <script src="../../scripts/theme_switcher.js?v=3"></script>
+    <script src="../../scripts/router.js?v=3"></script>
+</body>
+
+</html>

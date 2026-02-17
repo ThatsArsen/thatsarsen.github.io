@@ -1,363 +1,326 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Content</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Arsen Muradian — UX UI Product Designer</title>
+  <script>
+    (function () {
+      const theme = localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add(theme + '-theme');
+    })();
+  </script>
+  <link rel="stylesheet" href="styles/base_tokens.css?v=4">
+  <link rel="stylesheet" href="styles/semantic_tokens.css?v=4">
+  <link rel="stylesheet" href="styles/main.css?v=4">
+  <link rel="stylesheet" href="styles/components.css?v=4">
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f9fa;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      transition: transform 200ms ease;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 960px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      color: #3f51b5;
-      border-bottom: 2px solid #3f51b5;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
-      font-weight: 300;
-    }
-
-    h2 {
-      color: #3f51b5;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-
-    a {
-      color: #3f51b5;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      color: #5c6bc0;
-    }
-
-    .content-section {
-      margin-bottom: 30px;
-    }
-
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .content-item {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer; /* Make the whole card clickable */
-    }
-
-    .content-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .content-item h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-
-    .content-item p {
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    .content-item .actions {
-      margin-top: auto;
-    }
-
-    .content-item .actions a {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 500;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #eee;
-      color: #777;
-      border-top: 1px solid #ddd;
-      margin-top: 50px;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1001; /* Sit on top */
-      top: 0;
-      left: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed for modal content itself */
-      background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-    }
-
-    .modal-content {
-      position: absolute;
-      top: 5%;
-      left: 5%;
-      width: 90%;
-      height: 90%;
-      background-color: #fefefe;
-      padding: 16pt 0;
-      border-radius: 8pt;
-      box-sizing: border-box;
-      overflow: auto;
-    }
-
-    .modal-title {
-      margin-top: 0;
-      margin-bottom: 15px;
-      color: #3f51b5;
-      font-weight: 500;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-
-    .close-button {
-      color: #000;
-      background-color: #ffffff60;
-      border: none;
-      text-decoration: none;
-      border-radius: 40pt;
-      position: absolute;
-      top: 8pt;
-      right: 8pt;
-      font-size: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 4pt;
-      line-height: 1;
-      display: flex;/* Center icon vertically and horizontally */
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .close-button:hover,
-    .close-button:focus {
-      text-decoration: none;
-      cursor: pointer;
-      background-color: #ffffff80;
-    }
-    /*
-    #modal-video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
+    .avatar-float {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
     }
-    */
-    #modal-video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-pill {
+      padding: 6px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+
+    .social-pill:hover {
+      background: var(--bg-tertiary);
+      text-decoration: none;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .exp-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .exp-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .exp-card {
+      min-width: 260px;
+      max-width: 300px;
+      padding: 20px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-l);
+      border: 1px solid var(--border-light);
+      flex-shrink: 0;
+    }
+
+    .exp-card-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .exp-card-head strong {
+      font-size: 0.95rem;
+    }
+
+    .exp-card-head span {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .exp-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin: 0 0 12px;
+    }
+
+    /* Case cards — full width, cinematic */
+    a.case-card {
+      display: block;
+      /* Ensure it behaves like a card */
+      margin-bottom: 48px;
+      cursor: pointer;
+      text-decoration: none !important;
+      /* No underline by default on the card container */
+      color: inherit;
+      /* Inherit text color */
+    }
+
+    .case-cover {
+      width: 100%;
+      height: 420px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .case-cover img {
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.3s, transform 0.4s;
     }
 
+    /* Hover effects for the anchor card */
+    a.case-card:hover .case-cover img {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+
+    a.case-card:hover .case-title {
+      text-decoration: underline;
+      /* Underline title on hover */
+      text-decoration-color: var(--text-secondary);
+      /* Subtle underline */
+      text-underline-offset: 4px;
+    }
+
+    .case-cover-placeholder {
+      font-size: 4rem;
+    }
+
+    .case-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: var(--text-primary);
+    }
+
+    .case-desc {
+      color: var(--text-secondary);
+      max-width: 600px;
+      font-size: 0.9rem;
+      margin: 0 0 10px;
+    }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Welcome!</h1>
-    <p>Here is my content. Currently available:</p>
 
-    <section class="content-section" id="calmkeeper-section">
-      <h2>Calmkeeper</h2>
-      <div class="content-grid">
-        <div class="content-item">
-          <h3><a href="?video=calmkeeper/main_page.html">Main page</a></h3>
-          <p>Main page and animation when entering it</p>
-          <div class="actions">
-            <a href="?video=calmkeeper/main_page.html"><i class="material-icons">play_circle_filled</i> Watch video</a>
-          </div>
+<body class="light-theme">
+  <div id="app">
+
+    <!-- ─── Hero ─── -->
+    <header style="margin-top: 48px; margin-bottom: 64px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+        <div class="avatar-float">🧑‍🎨</div>
+        <div>
+          <h1 style="margin: 0; font-size: 1.35rem; letter-spacing: -0.01em;">Arsen Muradian</h1>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.85rem;">Product Designer</p>
         </div>
-        <div class="content-item">
-          <h3><a href="?video=calmkeeper/onboarding_and_questions.html">Onboarding and questionnaire</a></h3>
-          <p>This is onboarding and questionnaire upon first entering the application</p>
-          <div class="actions">
-            <a href="?video=calmkeeper/onboarding_and_questions.html"><i class="material-icons">play_circle_filled</i> Watch video</a>
-          </div>
+      </div>
+
+      <h2
+        style="font-size: 2.8rem; line-height: 1.1; margin: 0 0 24px; border: none; font-weight: 700; letter-spacing: -0.03em;">
+        Designing <span style="color: var(--accent-primary);">data&#8209;driven</span><br>
+        interfaces that boost&nbsp;revenue.
+      </h2>
+
+      <div class="social-links">
+        <a href="#" class="social-pill">LinkedIn ↗</a>
+        <a href="#" class="social-pill">Telegram ↗</a>
+        <a href="#" class="social-pill">CV (PDF) ↗</a>
+      </div>
+    </header>
+
+    <!-- ─── Experience (Horizontal Scroll) ─── -->
+    <section style="margin-bottom: 64px;">
+      <p class="section-label">Experience</p>
+      <div class="exp-scroll">
+        <div class="exp-card">
+          <div class="exp-card-head"><strong>Oopsify</strong><span>Current</span></div>
+          <p>Leading mobile app design & growth. +25% conversion.</p>
+          <span class="badge accent-2">Product</span>
         </div>
-        <!-- You can add other videos from Calmkeeper as content-item here -->
+        <div class="exp-card">
+          <div class="exp-card-head"><strong>Freelance</strong><span>2021–23</span></div>
+          <p>10+ fintech & edtech projects. Complex data interfaces.</p>
+          <span class="badge accent-1">UX / UI</span>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card-head"><strong>Studio X</strong><span>2020</span></div>
+          <p>Junior Designer. Design systems & prototyping.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Example of another content section (uncomment when needed)
-    <section class="content-section" id="another-section">
-      <h2>Another content section</h2>
-      <div class="content-grid">
-        <div class="content-item">
-          <h3><a href="?video=another/content1.html">Title of another content</a></h3>
-          <p>Brief description of another content.</p>
-          <div class="actions">
-            <a href="?video=another/content1.html"><i class="material-icons">play_circle_filled</i> Details</a>
-          </div>
+    <!-- ─── Impact ─── -->
+    <section style="margin-bottom: 64px;">
+      <p class="section-label">Impact</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div class="stat-item">
+          <span class="stat-value">+393%</span>
+          <span class="stat-label">Revenue (March)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">15k+</span>
+          <span class="stat-label">Active Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">4.8</span>
+          <span class="stat-label">App Store Rating</span>
         </div>
       </div>
     </section>
-    -->
 
-    <!-- Пытался вставит видео из гугл драйв чтоыб автоплей был, не вышло -->
-    <!-- <iframe src="https://drive.google.com/file/d/113V8ZTyYsdcb88pUc-JMRF6evaE6EL7I/preview?start=1&loop=1&muted=1&rel=0" width="480" height="480" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; loop"></iframe> 
-
-    <video width="480" height="480" controls>
-    <source src="https://drive.google.com/file/d/113V8ZTyYsdcb88pUc-JMRF6evaE6EL7I/preview?start=1&loop=1&muted=1&rel=0" type="video/mp4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; loop">
-    Your browser does not support the video tag.
-    </video>
-
-    <video width="480" height="480" controls>
-    <source src="https://drive.google.com/uc?id=113V8ZTyYsdcb88pUc-JMRF6evaE6EL7I&export=download" type="video/mp4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; loop">
-    Your browser does not support the video tag.
-    </video>
-
-    <video 
-    src="https://drive.google.com/uc?id=113V8ZTyYsdcb88pUc-JMRF6evaE6EL7I&export=download" controls>
-    </video>
-    https://drive.google.com/file/d/113V8ZTyYsdcb88pUc-JMRF6evaE6EL7I/view?usp=drive_link -->
-
-  </div>
-
-  <div id="video-modal" class="modal">
-    <div class="modal-content">
-      <button type="button" class="close-button" aria-label="Close">
-        <i class="material-icons">close</i>
-      </button>
-      <div id="modal-video-container">
-        <!-- Video iframe will be inserted here -->
+    <!-- ─── Selected Cases ─── -->
+    <section style="margin-bottom: 64px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
+        <p class="section-label" style="margin-bottom: 0;">Selected Cases</p>
+        <a href="#cases" style="font-size: 0.85rem;">All Cases ↓</a>
       </div>
-    </div>
+
+      <!-- Oopsify -->
+      <a href="/case/oopsify/" class="case-card">
+        <div class="case-cover" style="background: #1a1a1a;">
+          <img src="images/cover_ofoopsify.png" alt="Oopsify Cover">
+        </div>
+        <h3 class="case-title">Oopsify: Scaling AI&nbsp;Video revenue by 393%</h3>
+        <p class="case-desc">Optimized onboarding funnel, paywall A/B tests, and redesigned the core creation flow.</p>
+        <span class="badge accent-5">Product Growth</span>
+        <span class="badge accent-2">Mobile App</span>
+      </a>
+
+      <!-- Calmkeeper -->
+      <div class="case-card">
+        <div class="case-cover" style="background: var(--surface-accent-3);">
+          <span class="case-cover-placeholder">🧘</span>
+        </div>
+        <h3 class="case-title">Calmkeeper: Retention-focused redesign</h3>
+        <p class="case-desc">Redesigning anxiety relief flows to improve daily active users.</p>
+        <span class="badge accent-3">Wellness</span>
+        <span class="badge accent-2">UX Research</span>
+      </div>
+
+      <!-- Bookreader -->
+      <div class="case-card">
+        <div class="case-cover" style="background: var(--surface-accent-5);">
+          <span class="case-cover-placeholder">📚</span>
+        </div>
+        <h3 class="case-title">Bookreader: Deep book engagement</h3>
+        <p class="case-desc">Educational platform for meaningful reading habits.</p>
+        <span class="badge accent-5">Education</span>
+      </div>
+    </section>
+
+    <!-- ─── More Cases ─── -->
+    <section id="cases" style="margin-bottom: 64px;">
+      <p class="section-label">Cases</p>
+
+      <div class="callout accent-1">
+        <div class="callout-icon">💡</div>
+        <div class="callout-content">
+          <strong>Moviemoji</strong>
+          <p>В одиночку разработал MVP уникального сервиса кинооценок на основе эмоций.</p>
+          <details class="toggle-block">
+            <summary>Результаты (раскрыть)</summary>
+            <div class="toggle-content">
+              <p>Доказал жизнеспособность идеи на тестовых пользователях.</p>
+            </div>
+          </details>
+          <hr>
+          <a href="#">Открыть кейс ↗</a>
+        </div>
+      </div>
+
+      <div class="callout accent-2">
+        <div class="callout-icon">🏗️</div>
+        <div class="callout-content">
+          <strong>Telegram Wallet Redesign</strong>
+          <p>Концепция редизайна кошелька в Telegram для улучшения UX и безопасности.</p>
+          <a href="#">Посмотреть на Behance ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer style="text-align: center; padding-bottom: var(--space-xl);">
+      <hr>
+      <p style="font-size: 0.8rem; color: var(--text-secondary);">© 2026 Arsen Muradian. Built with custom components.
+      </p>
+    </footer>
+
   </div>
 
+  <!-- Floating Theme Toggle -->
+  <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">🌓</button>
 
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.getElementById('video-modal');
-      const modalVideoContainer = document.getElementById('modal-video-container');
-      const closeModalButton = document.querySelector('.close-button');
-
-      // Fetch video parameters from JSON file
-      fetch('video-params.json')
-        .then(response => response.json())
-        .then(videoParamsData => {
-          const youtubeParams = videoParamsData.youtube_params;
-
-          // Function to open modal with video
-          function openVideoModal(videoPath) {
-            const videoId = getVideoIdFromPath(videoPath);
-            if (videoId) {
-              let youtubeUrl = 'https://www.youtube.com/embed/' + videoId + '?';
-              for (const key in youtubeParams) {
-                let value = youtubeParams[key];
-                if (value === "%VIDEO_ID%") {
-                  value = videoId;
-                }
-                youtubeUrl += key + '=' + value + '&';
-              }
-              youtubeUrl = youtubeUrl.slice(0, -1);
-
-              const iframe = document.createElement('iframe');
-              iframe.src = youtubeUrl;
-              iframe.title = 'Video content';
-              iframe.frameborder = '0';
-              iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-              iframe.allowFullscreen = true;
-
-              modalVideoContainer.innerHTML = '';
-              modalVideoContainer.appendChild(iframe);
-              modal.style.display = "block";
-            } else {
-              alert('Could not determine video ID for: ' + videoPath);
-            }
-          }
-
-          // Function to close modal
-          function closeVideoModal() {
-            modal.style.display = "none";
-            modalVideoContainer.innerHTML = '';
-          }
-
-          // Close modal on close button click
-          closeModalButton.addEventListener('click', closeVideoModal);
-
-          // Close modal when clicking outside of it
-          window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-              closeVideoModal();
-            }
-          });
-
-          function getVideoIdFromPath(path) {
-            const pathParts = path.split('/');
-            const filename = pathParts[pathParts.length - 1];
-
-            if (filename === 'main_page.html') return 'ecG7jtDIOsA';
-            if (filename === 'onboarding_and_questions.html') return 'DmvX_x5BgM4';
-            return null;
-          }
-
-          // Handle clicks on "Watch video" links to open modal
-          const videoLinks = document.querySelectorAll('.content-item .actions a');
-          videoLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-              event.preventDefault();
-              const videoPath = new URL(this.href, document.baseURI).searchParams.get('video');
-              if (videoPath) {
-                openVideoModal(videoPath);
-              }
-            });
-          });
-
-          // Make content cards clickable
-          const contentItems = document.querySelectorAll('.content-item');
-          contentItems.forEach(item => {
-            item.addEventListener('click', function() {
-              const link = this.querySelector('.actions a');
-              if (link) {
-                const videoPath = new URL(link.href, document.baseURI).searchParams.get('video');
-                if (videoPath) {
-                  openVideoModal(videoPath);
-                }
-              }
-            });
-          });
-
-        });
-    });
-  </script>
+  <script src="scripts/theme_switcher.js?v=4"></script>
+  <script src="scripts/router.js?v=4"></script>
 </body>
+
 </html>

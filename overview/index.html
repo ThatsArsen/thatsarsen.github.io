@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overview — Design System</title>
+  <script>
+    (function () {
+      const theme = localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add(theme + '-theme');
+    })();
+  </script>
+  <link rel="stylesheet" href="../styles/base_tokens.css?v=4">
+  <link rel="stylesheet" href="../styles/semantic_tokens.css?v=4">
+  <link rel="stylesheet" href="../styles/main.css?v=4">
+  <link rel="stylesheet" href="../styles/components.css?v=4">
+  <link rel="stylesheet" href="../overview/overview.css?v=4">
+  <style>
+    /* Additional local styles for new token displays */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-m);
+      margin-bottom: var(--space-l);
+    }
+
+    .token-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-m);
+      padding: var(--space-s);
+      display: flex;
+      align-items: center;
+      gap: var(--space-m);
+    }
+
+    .token-preview {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-s);
+      border: 1px solid var(--border-light);
+      flex-shrink: 0;
+    }
+
+    .token-info {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.8rem;
+    }
+
+    .token-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .token-val {
+      color: var(--text-secondary);
+      font-family: monospace;
+      font-size: 0.7rem;
+    }
+
+    /* Element Accents Grid */
+    .element-accent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .element-box {
+      height: 64px;
+      border-radius: var(--radius-m);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Sections are visible by default in CSS, filtered via JS classes */
+    .overview-section.hidden {
+      display: none !important;
+    }
+
+    .overview-section {
+      display: block;
+      /* Default state */
+    }
+  </style>
+</head>
+
+<body class="light-theme overview-body">
+  <div id="overview-app">
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar">
+      <div class="sidebar-header" onclick="showAll()" style="cursor: pointer;">
+        <h2>🧭 Overview</h2>
+        <p>Design System</p>
+      </div>
+
+      <nav class="tree-nav">
+        <ul>
+          <!-- Foundation -->
+          <li>
+            <div class="tree-item" onclick="filterGroup('foundation')">
+              <span class="tree-icon">📐</span> Foundation
+            </div>
+            <ul id="group-foundation" class="tree-group open">
+              <li>
+                <div class="tree-item" onclick="filterGroup('colors')"
+                  style="padding-left: calc(var(--space-m) + 14px);">
+                  <span class="tree-icon">🎨</span> Colors
+                </div>
+                <ul id="group-colors" class="tree-group open">
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('base-colors', this)">Base Scales</li>
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('semantic-surfaces', this)">Surfaces</li>
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('semantic-text', this)">Text & UI</li>
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('semantic-elements', this)">Elements</li>
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('semantic-interaction', this)">Interaction
+                  </li>
+                </ul>
+              </li>
+              <li class="tree-leaf" onclick="scrollToSection('shadows', this)">Shadows</li>
+              <li class="tree-leaf" onclick="scrollToSection('spaces', this)">Spaces</li>
+              <li class="tree-leaf" onclick="scrollToSection('roundness', this)">Roundness</li>
+              <li>
+                <div class="tree-item" onclick="filterGroup('animation')"
+                  style="padding-left: calc(var(--space-m) + 14px);">
+                  <span class="tree-icon">⚡</span> Animation
+                </div>
+                <ul id="group-animation" class="tree-group open">
+                  <li class="tree-leaf tree-leaf-l2" onclick="scrollToSection('transitions', this)">Transition</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Components -->
+          <li>
+            <div class="tree-item" onclick="filterGroup('components')">
+              <span class="tree-icon">🧩</span> Components
+            </div>
+            <ul id="group-components" class="tree-group open">
+              <li class="tree-leaf" onclick="scrollToSection('comp-callouts', this)">Callouts</li>
+              <li class="tree-leaf" onclick="scrollToSection('comp-badges', this)">Badges</li>
+              <li class="tree-leaf" onclick="scrollToSection('comp-cards', this)">Cards & Stats</li>
+              <li class="tree-leaf" onclick="scrollToSection('comp-toggles', this)">Toggles</li>
+              <li class="tree-leaf" onclick="scrollToSection('comp-columns', this)">Columns</li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="theme-toggle-btn-small" onclick="toggleTheme()">🌓 Toggle Theme</button>
+      </div>
+    </aside>
+
+    <!-- ─── Content Area ─── -->
+    <main class="content-area">
+
+      <!-- ═══ BASE COLORS ═══ -->
+      <section id="base-colors" class="overview-section" data-group="foundation colors">
+        <h1>Base Colors</h1>
+        <p>Primitive 11-shade scales (050→950).</p>
+
+        <div class="color-row-container">
+          <!-- Grays -->
+          <h4>Gray</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-gray-050)">050</div>
+            <div class="swatch" style="background:var(--base-gray-100)">100</div>
+            <div class="swatch" style="background:var(--base-gray-200)">200</div>
+            <div class="swatch" style="background:var(--base-gray-300)">300</div>
+            <div class="swatch" style="background:var(--base-gray-400)">400</div>
+            <div class="swatch" style="background:var(--base-gray-500)">500</div>
+            <div class="swatch" style="background:var(--base-gray-600)">600</div>
+            <div class="swatch" style="background:var(--base-gray-700)">700</div>
+            <div class="swatch" style="background:var(--base-gray-800)">800</div>
+            <div class="swatch" style="background:var(--base-gray-900)">900</div>
+            <div class="swatch" style="background:var(--base-gray-950)">950</div>
+          </div>
+
+          <h4>Blue</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-blue-050)">050</div>
+            <div class="swatch" style="background:var(--base-blue-100)">100</div>
+            <div class="swatch" style="background:var(--base-blue-200)">200</div>
+            <div class="swatch" style="background:var(--base-blue-300)">300</div>
+            <div class="swatch" style="background:var(--base-blue-400)">400</div>
+            <div class="swatch" style="background:var(--base-blue-500)">500</div>
+            <div class="swatch" style="background:var(--base-blue-600)">600</div>
+            <div class="swatch" style="background:var(--base-blue-700)">700</div>
+            <div class="swatch" style="background:var(--base-blue-800)">800</div>
+            <div class="swatch" style="background:var(--base-blue-900)">900</div>
+            <div class="swatch" style="background:var(--base-blue-950)">950</div>
+          </div>
+
+          <h4>Green</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-green-050)">050</div>
+            <div class="swatch" style="background:var(--base-green-100)">100</div>
+            <div class="swatch" style="background:var(--base-green-200)">200</div>
+            <div class="swatch" style="background:var(--base-green-300)">300</div>
+            <div class="swatch" style="background:var(--base-green-400)">400</div>
+            <div class="swatch" style="background:var(--base-green-500)">500</div>
+            <div class="swatch" style="background:var(--base-green-600)">600</div>
+            <div class="swatch" style="background:var(--base-green-700)">700</div>
+            <div class="swatch" style="background:var(--base-green-800)">800</div>
+            <div class="swatch" style="background:var(--base-green-900)">900</div>
+            <div class="swatch" style="background:var(--base-green-950)">950</div>
+          </div>
+
+          <h4>Yellow</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-yellow-050)">050</div>
+            <div class="swatch" style="background:var(--base-yellow-100)">100</div>
+            <div class="swatch" style="background:var(--base-yellow-200)">200</div>
+            <div class="swatch" style="background:var(--base-yellow-300)">300</div>
+            <div class="swatch" style="background:var(--base-yellow-400)">400</div>
+            <div class="swatch" style="background:var(--base-yellow-500)">500</div>
+            <div class="swatch" style="background:var(--base-yellow-600)">600</div>
+            <div class="swatch" style="background:var(--base-yellow-700)">700</div>
+            <div class="swatch" style="background:var(--base-yellow-800)">800</div>
+            <div class="swatch" style="background:var(--base-yellow-900)">900</div>
+            <div class="swatch" style="background:var(--base-yellow-950)">950</div>
+          </div>
+
+          <h4>Purple</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-purple-050)">050</div>
+            <div class="swatch" style="background:var(--base-purple-100)">100</div>
+            <div class="swatch" style="background:var(--base-purple-200)">200</div>
+            <div class="swatch" style="background:var(--base-purple-300)">300</div>
+            <div class="swatch" style="background:var(--base-purple-400)">400</div>
+            <div class="swatch" style="background:var(--base-purple-500)">500</div>
+            <div class="swatch" style="background:var(--base-purple-600)">600</div>
+            <div class="swatch" style="background:var(--base-purple-700)">700</div>
+            <div class="swatch" style="background:var(--base-purple-800)">800</div>
+            <div class="swatch" style="background:var(--base-purple-900)">900</div>
+            <div class="swatch" style="background:var(--base-purple-950)">950</div>
+          </div>
+
+          <h4>Pink</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-pink-050)">050</div>
+            <div class="swatch" style="background:var(--base-pink-100)">100</div>
+            <div class="swatch" style="background:var(--base-pink-200)">200</div>
+            <div class="swatch" style="background:var(--base-pink-300)">300</div>
+            <div class="swatch" style="background:var(--base-pink-400)">400</div>
+            <div class="swatch" style="background:var(--base-pink-500)">500</div>
+            <div class="swatch" style="background:var(--base-pink-600)">600</div>
+            <div class="swatch" style="background:var(--base-pink-700)">700</div>
+            <div class="swatch" style="background:var(--base-pink-800)">800</div>
+            <div class="swatch" style="background:var(--base-pink-900)">900</div>
+            <div class="swatch" style="background:var(--base-pink-950)">950</div>
+          </div>
+
+          <h4>Brown</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-brown-050)">050</div>
+            <div class="swatch" style="background:var(--base-brown-100)">100</div>
+            <div class="swatch" style="background:var(--base-brown-200)">200</div>
+            <div class="swatch" style="background:var(--base-brown-300)">300</div>
+            <div class="swatch" style="background:var(--base-brown-400)">400</div>
+            <div class="swatch" style="background:var(--base-brown-500)">500</div>
+            <div class="swatch" style="background:var(--base-brown-600)">600</div>
+            <div class="swatch" style="background:var(--base-brown-700)">700</div>
+            <div class="swatch" style="background:var(--base-brown-800)">800</div>
+            <div class="swatch" style="background:var(--base-brown-900)">900</div>
+            <div class="swatch" style="background:var(--base-brown-950)">950</div>
+          </div>
+
+          <h4>Teal</h4>
+          <div class="palette-grid full-row">
+            <div class="swatch" style="background:var(--base-teal-050)">050</div>
+            <div class="swatch" style="background:var(--base-teal-100)">100</div>
+            <div class="swatch" style="background:var(--base-teal-200)">200</div>
+            <div class="swatch" style="background:var(--base-teal-300)">300</div>
+            <div class="swatch" style="background:var(--base-teal-400)">400</div>
+            <div class="swatch" style="background:var(--base-teal-500)">500</div>
+            <div class="swatch" style="background:var(--base-teal-600)">600</div>
+            <div class="swatch" style="background:var(--base-teal-700)">700</div>
+            <div class="swatch" style="background:var(--base-teal-800)">800</div>
+            <div class="swatch" style="background:var(--base-teal-900)">900</div>
+            <div class="swatch" style="background:var(--base-teal-950)">950</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation colors">
+
+      <!-- ═══ SEMANTIC: SURFACES ═══ -->
+      <section id="semantic-surfaces" class="overview-section" data-group="foundation colors">
+        <h1>Semantic Surfaces (Backgrounds)</h1>
+        <div class="token-grid">
+          <div class="token-card">
+            <div class="token-preview" style="background:var(--bg-primary)"></div>
+            <div class="token-info"><span class="token-name">--bg-primary</span><span class="token-val">Page BG</span>
+            </div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview" style="background:var(--bg-secondary)"></div>
+            <div class="token-info"><span class="token-name">--bg-secondary</span><span class="token-val">Cards /
+                Sidebar</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview" style="background:var(--bg-tertiary)"></div>
+            <div class="token-info"><span class="token-name">--bg-tertiary</span><span class="token-val">Inputs /
+                Hover</span></div>
+          </div>
+        </div>
+
+        <h3>Accent Surfaces</h3>
+        <p>Used for lightweight backgrounds (badges, callouts).</p>
+        <div class="accent-grid">
+          <div class="accent-swatch" style="background:var(--surface-accent-1); color:var(--text-accent-1);">
+            <span>Accent 1</span><small>Gray</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-2); color:var(--text-accent-2);">
+            <span>Accent 2</span><small>Blue</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-3); color:var(--text-accent-3);">
+            <span>Accent 3</span><small>Green</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-4); color:var(--text-accent-4);">
+            <span>Accent 4</span><small>Yellow</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-5); color:var(--text-accent-5);">
+            <span>Accent 5</span><small>Purple</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-6); color:var(--text-accent-6);">
+            <span>Accent 6</span><small>Pink</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-7); color:var(--text-accent-7);">
+            <span>Accent 7</span><small>Brown</small>
+          </div>
+          <div class="accent-swatch" style="background:var(--surface-accent-8); color:var(--text-accent-8);">
+            <span>Accent 8</span><small>Teal</small>
+          </div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation colors">
+
+      <!-- ═══ SEMANTIC: TEXT & BORDERS ═══ -->
+      <section id="semantic-text" class="overview-section" data-group="foundation colors">
+        <h1>Text & Borders</h1>
+        <div class="token-grid">
+          <div class="token-card">
+            <div class="token-preview"
+              style="background:var(--bg-primary); display:flex; align-items:center; justify-content:center; color:var(--text-primary); font-weight:bold;">
+              Aa</div>
+            <div class="token-info"><span class="token-name">--text-primary</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview"
+              style="background:var(--bg-primary); display:flex; align-items:center; justify-content:center; color:var(--text-secondary); font-weight:bold;">
+              Aa</div>
+            <div class="token-info"><span class="token-name">--text-secondary</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview"
+              style="background:var(--text-primary); display:flex; align-items:center; justify-content:center; color:var(--text-inverse); font-weight:bold;">
+              Aa</div>
+            <div class="token-info"><span class="token-name">--text-inverse</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview" style="border:1px solid var(--border-light)"></div>
+            <div class="token-info"><span class="token-name">--border-light</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview" style="border:1px solid var(--border-medium)"></div>
+            <div class="token-info"><span class="token-name">--border-medium</span></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation colors">
+
+      <!-- ═══ SEMANTIC: ELEMENTS ═══ -->
+      <section id="semantic-elements" class="overview-section" data-group="foundation colors">
+        <h1>Element Accents</h1>
+        <p>Used for buttons, icons, or high-emphasis elements.</p>
+        <div class="element-accent-grid">
+          <div class="element-box" style="background:var(--element-accent-2)">--element-accent-2</div>
+          <div class="element-box" style="background:var(--element-accent-3)">--element-accent-3</div>
+          <div class="element-box" style="background:var(--element-accent-4); color:black;">--element-accent-4</div>
+          <div class="element-box" style="background:var(--element-accent-5)">--element-accent-5</div>
+          <div class="element-box" style="background:var(--element-accent-6)">--element-accent-6</div>
+          <div class="element-box" style="background:var(--element-accent-7)">--element-accent-7</div>
+          <div class="element-box" style="background:var(--element-accent-8)">--element-accent-8</div>
+          <div class="element-box" style="background:var(--accent-primary)">--accent-primary</div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation colors">
+
+      <!-- ═══ SEMANTIC: INTERACTION ═══ -->
+      <section id="semantic-interaction" class="overview-section" data-group="foundation colors">
+        <h1>Interaction States</h1>
+        <div class="token-grid">
+          <div class="token-card">
+            <div class="token-preview" style="background:var(--accent-primary)"></div>
+            <div class="token-info"><span class="token-name">--accent-primary</span><span class="token-val">Main
+                Action</span></div>
+          </div>
+          <div class="token-card">
+            <div class="token-preview" style="background:var(--accent-hover)"></div>
+            <div class="token-info"><span class="token-name">--accent-hover</span><span class="token-val">Hover
+                State</span></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation shadows">
+
+      <!-- ═══ SHADOWS ═══ -->
+      <section id="shadows" class="overview-section" data-group="foundation shadows">
+        <h1>Shadows</h1>
+        <div class="demo-row">
+          <div class="shadow-demo" style="box-shadow:var(--shadow-sm);">SM</div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-md);">MD</div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-lg);">LG</div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation spaces">
+
+      <!-- ═══ SPACES ═══ -->
+      <section id="spaces" class="overview-section" data-group="foundation spaces">
+        <h1>Spacing</h1>
+        <div class="spacing-row"><span class="spacing-label">xs (4px)</span>
+          <div class="spacing-bar" style="width:var(--space-xs);"></div>
+        </div>
+        <div class="spacing-row"><span class="spacing-label">s (8px)</span>
+          <div class="spacing-bar" style="width:var(--space-s);"></div>
+        </div>
+        <div class="spacing-row"><span class="spacing-label">m (16px)</span>
+          <div class="spacing-bar" style="width:var(--space-m);"></div>
+        </div>
+        <div class="spacing-row"><span class="spacing-label">l (24px)</span>
+          <div class="spacing-bar" style="width:var(--space-l);"></div>
+        </div>
+        <div class="spacing-row"><span class="spacing-label">xl (32px)</span>
+          <div class="spacing-bar" style="width:var(--space-xl);"></div>
+        </div>
+        <div class="spacing-row"><span class="spacing-label">xxl (48px)</span>
+          <div class="spacing-bar" style="width:var(--space-xxl);"></div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation roundness">
+
+      <!-- ═══ ROUNDNESS ═══ -->
+      <section id="roundness" class="overview-section" data-group="foundation roundness">
+        <h1>Border Radius</h1>
+        <div class="demo-row">
+          <div class="radius-box" style="border-radius:var(--radius-s)">s</div>
+          <div class="radius-box" style="border-radius:var(--radius-m)">m</div>
+          <div class="radius-box" style="border-radius:var(--radius-l)">l</div>
+          <div class="radius-box" style="border-radius:var(--radius-xl)">xl</div>
+          <div class="radius-box" style="border-radius:var(--radius-full); width:100px;">full</div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="foundation animation">
+
+      <!-- ═══ TRANSITIONS ═══ -->
+      <section id="transitions" class="overview-section" data-group="foundation animation">
+        <h1>Transitions</h1>
+        <div class="demo-row">
+          <div class="transition-demo" style="transition:transform var(--transition-fast);">Fast</div>
+          <div class="transition-demo" style="transition:transform var(--transition-normal);">Normal</div>
+        </div>
+        <p style="margin-top:16px; color:var(--text-secondary); font-size:0.85rem;">Hover the boxes to see the easing.
+        </p>
+      </section>
+
+      <hr class="overview-section" data-group="components">
+
+      <!-- ═══ COMP: CALLOUTS ═══ -->
+      <section id="comp-callouts" class="overview-section" data-group="components">
+        <h1>Callouts</h1>
+        <div class="callout accent-1">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">Accent 1 — Gray (Default)</div>
+        </div>
+        <div class="callout accent-2">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-content">Accent 2 — Blue (Info)</div>
+        </div>
+        <div class="callout accent-4">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content">Accent 4 — Yellow (Warning)</div>
+        </div>
+        <div class="callout accent-3">
+          <div class="callout-icon">✅</div>
+          <div class="callout-content">Accent 3 — Green (Success)</div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="components">
+
+      <!-- ═══ COMP: BADGES ═══ -->
+      <section id="comp-badges" class="overview-section" data-group="components">
+        <h1>Badges</h1>
+        <div class="demo-row">
+          <span class="badge accent-1">Accent 1</span>
+          <span class="badge accent-2">Accent 2</span>
+          <span class="badge accent-3">Accent 3</span>
+          <span class="badge accent-4">Accent 4</span>
+          <span class="badge accent-5">Accent 5</span>
+          <span class="badge accent-6">Accent 6</span>
+          <span class="badge accent-7">Accent 7</span>
+          <span class="badge accent-8">Accent 8</span>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="components">
+
+      <!-- ═══ COMP: CARDS & STATS ═══ -->
+      <section id="comp-cards" class="overview-section" data-group="components">
+        <h1>Cards & Stat Items</h1>
+        <h3>Stat Item</h3>
+        <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:16px;">Standard Component (Gray/Neutral)
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px;">
+          <div class="stat-item"><span class="stat-value">+393%</span><span class="stat-label">Revenue</span></div>
+          <div class="stat-item"><span class="stat-value">15k+</span><span class="stat-label">Users</span></div>
+          <div class="stat-item"><span class="stat-value">4.8</span><span class="stat-label">Rating</span></div>
+        </div>
+
+        <h3>Card</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div
+              style="height:120px; background:var(--bg-tertiary); border-radius:var(--radius-m) var(--radius-m) 0 0;">
+            </div>
+            <div class="card-body">
+              <div class="card-title">Card Title</div>
+              <p class="card-desc">Description text goes here.</p>
+              <span class="badge accent-2">Tag</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="overview-section" data-group="components">
+
+      <!-- ═══ COMP: TOGGLES ═══ -->
+      <section id="comp-toggles" class="overview-section" data-group="components">
+        <h1>Toggles</h1>
+        <details class="toggle-block">
+          <summary>🔍 Toggle Example <span class="badge accent-1">click</span></summary>
+          <div class="toggle-content">
+            <p>Hidden content revealed on toggle.</p>
+          </div>
+        </details>
+      </section>
+
+      <hr class="overview-section" data-group="components">
+
+      <!-- ═══ COMP: COLUMNS ═══ -->
+      <section id="comp-columns" class="overview-section" data-group="components">
+        <h1>Column Lists</h1>
+        <div class="column-list">
+          <div class="column">
+            <div class="callout accent-2"><strong>Column 1</strong>
+              <p>Content block A</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="callout accent-1"><strong>Column 2</strong>
+              <p>Content block B</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../scripts/theme_switcher.js?v=4"></script>
+  <script>
+    /* 
+      Navigation Logic: 
+      - showAll(): default
+      - filterGroup(id): show sections with data-group including id
+      - scrollToSection(id): filter first (if needed to ensure visible) then scroll
+    */
+
+    function showAll() {
+      document.querySelectorAll('.overview-section').forEach(el => el.classList.remove('hidden'));
+      document.querySelectorAll('.tree-item, .tree-leaf').forEach(el => el.classList.remove('active-leaf'));
+      document.querySelectorAll('.tree-group').forEach(el => el.classList.add('open'));
+    }
+
+    function filterGroup(groupId) {
+      const sections = document.querySelectorAll('.overview-section');
+      sections.forEach(sec => {
+        const groups = (sec.dataset.group || '').split(' ');
+        if (groups.includes(groupId)) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+      document.querySelectorAll('.tree-leaf').forEach(el => el.classList.remove('active-leaf'));
+    }
+
+    function scrollToSection(sectionId, leafEl) {
+      const target = document.getElementById(sectionId);
+      if (!target) return;
+
+      const groups = (target.dataset.group || '').split(' ');
+      if (groups.length > 0) {
+        // Optional: keep it simple and just show everything then scroll? 
+        // Or filter. User liked tabs. Let's show all for context or filter?
+        // "if clicking directory show directory, if clicking item scroll to it"
+        // If I scroll to item, I should probably ensure it's visible.
+        // If I filter by its group, it's visible.
+        filterGroup(groups[groups.length - 1]);
+      }
+
+      target.classList.remove('hidden');
+      target.scrollIntoView({ behavior: 'auto', block: 'start' });
+
+      document.querySelectorAll('.tree-leaf').forEach(l => l.classList.remove('active-leaf'));
+      if (leafEl) leafEl.classList.add('active-leaf');
+    }
+
+    showAll();
+  </script>
+</body>
+
+</html>

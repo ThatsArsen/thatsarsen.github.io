@@ -1,0 +1,208 @@
+/* Semantic Tokens (Context Level) */
+
+/* Theme Variables Initialization */
+:root {
+   /* DEFAULT THEME (LIGHT) */
+   /* Backgrounds */
+   --bg-primary: var(--base-gray-950);
+   /* #ffffff */
+   --bg-secondary: var(--base-gray-900);
+   /* #f5f5f5 */
+   --bg-tertiary: var(--base-gray-800);
+   /* #d0d0d0 */
+
+   /* Text */
+   --text-primary: var(--base-gray-100);
+   /* #121212 */
+   --text-secondary: var(--base-gray-500);
+   /* #555555 */
+   --text-inverse: var(--base-gray-950);
+   /* #ffffff */
+
+   /* Borders & Shadows */
+   --border-light: rgba(0, 0, 0, 0.09);
+   --border-medium: rgba(0, 0, 0, 0.18);
+   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+   /* ACCENT SURFACES (Abstract Naming) 
+       1: Gray/Default
+       2: Blue
+       3: Green
+       4: Yellow
+       5: Purple
+       6: Pink
+       7: Brown
+       8: Teal
+    */
+
+   /* Light Theme Mapping (Low base numbers = Dark colors, High = Light colors) 
+       For surfaces, we want LIGHT colors (900-950).
+       For text/functional elements, we want DARK colors (500-600).
+    */
+
+   /* Accent 1: Gray */
+   --surface-accent-1: var(--base-gray-900);
+   --text-accent-1: var(--base-gray-100);
+
+   /* Accent 2: Blue (Info) */
+   --surface-accent-2: var(--base-blue-900);
+   --text-accent-2: var(--base-blue-600);
+   --element-accent-2: var(--base-blue-600);
+   /* Buttons, badges */
+
+   /* Accent 3: Green (Success) */
+   --surface-accent-3: var(--base-green-900);
+   --text-accent-3: var(--base-green-500);
+   --element-accent-3: var(--base-green-600);
+
+   /* Accent 4: Yellow (Warning) */
+   --surface-accent-4: var(--base-yellow-900);
+   --text-accent-4: var(--base-yellow-500);
+   /* Darker yellow for text */
+   --element-accent-4: var(--base-yellow-500);
+
+   /* Accent 5: Purple */
+   --surface-accent-5: var(--base-purple-900);
+   --text-accent-5: var(--base-purple-500);
+   --element-accent-5: var(--base-purple-600);
+
+   /* Accent 6: Pink (Love/Error) */
+   --surface-accent-6: var(--base-pink-900);
+   --text-accent-6: var(--base-pink-500);
+   --element-accent-6: var(--base-pink-600);
+
+   /* Accent 7: Brown */
+   --surface-accent-7: var(--base-brown-900);
+   --text-accent-7: var(--base-brown-500);
+   --element-accent-7: var(--base-brown-600);
+
+   /* Accent 8: Teal (Brand/Oopsify) */
+   --surface-accent-8: var(--base-teal-950);
+   --text-accent-8: var(--base-teal-600);
+   --element-accent-8: var(--base-teal-500);
+
+   /* Interaction State */
+   --accent-primary: var(--base-blue-500);
+   --accent-hover: var(--base-blue-400);
+   /* Lighter on hover */
+}
+
+/* DARK THEME OVERRIDES */
+[data-theme='dark'] {
+   /* Backgrounds */
+   --bg-primary: var(--base-gray-100);
+   /* #121212 */
+   --bg-secondary: var(--base-gray-200);
+   /* #1e1e1e */
+   --bg-tertiary: var(--base-gray-300);
+   /* #2c2c2c */
+
+   /* Text */
+   --text-primary: var(--base-gray-950);
+   /* #ffffff */
+   --text-secondary: var(--base-gray-700);
+   /* #aaaaaa */
+   --text-inverse: var(--base-gray-100);
+   /* #121212 */
+
+   /* Borders & Shadows */
+   --border-light: rgba(255, 255, 255, 0.09);
+   --border-medium: rgba(255, 255, 255, 0.18);
+   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+
+   /* Dark Theme Mapping 
+       For surfaces, we want DARK/MUTED colors (100-200).
+       For text, we want LIGHT colors (800-900) or saturated mid-tones (500).
+    */
+
+   /* Accent 1: Gray */
+   --surface-accent-1: var(--base-gray-200);
+   --text-accent-1: var(--base-gray-900);
+
+   /* Accent 2: Blue */
+   --surface-accent-2: var(--base-blue-100);
+   /* Dark blue bg */
+   --text-accent-2: var(--base-blue-800);
+   /* Light blue text */
+   --element-accent-2: var(--base-blue-500);
+
+   /* Accent 3: Green */
+   --surface-accent-3: var(--base-green-100);
+   --text-accent-3: var(--base-green-800);
+   --element-accent-3: var(--base-green-500);
+
+   /* Accent 4: Yellow */
+   --surface-accent-4: var(--base-yellow-100);
+   --text-accent-4: var(--base-yellow-800);
+   /* Light yellow */
+   --element-accent-4: var(--base-yellow-500);
+
+   /* Accent 5: Purple */
+   --surface-accent-5: var(--base-purple-100);
+   --text-accent-5: var(--base-purple-800);
+   --element-accent-5: var(--base-purple-500);
+
+   /* Accent 6: Pink */
+   --surface-accent-6: var(--base-pink-100);
+   --text-accent-6: var(--base-pink-800);
+   --element-accent-6: var(--base-pink-500);
+
+   /* Accent 7: Brown */
+   --surface-accent-7: var(--base-brown-100);
+   --text-accent-7: var(--base-brown-800);
+   --element-accent-7: var(--base-brown-500);
+
+   /* Accent 8: Teal */
+   --surface-accent-8: var(--base-teal-100);
+   --text-accent-8: var(--base-teal-800);
+   --element-accent-8: var(--base-teal-500);
+
+   /* Interaction State */
+   --accent-primary: var(--base-blue-400);
+   --accent-hover: var(--base-blue-500);
+}
+
+/* ─── Semantic Accent Utility Classes ─── */
+/* Use on any component: class="badge accent-2", class="callout accent-5", etc. */
+
+.accent-1 {
+   background-color: var(--surface-accent-1);
+   color: var(--text-accent-1);
+}
+
+.accent-2 {
+   background-color: var(--surface-accent-2);
+   color: var(--text-accent-2);
+}
+
+.accent-3 {
+   background-color: var(--surface-accent-3);
+   color: var(--text-accent-3);
+}
+
+.accent-4 {
+   background-color: var(--surface-accent-4);
+   color: var(--text-accent-4);
+}
+
+.accent-5 {
+   background-color: var(--surface-accent-5);
+   color: var(--text-accent-5);
+}
+
+.accent-6 {
+   background-color: var(--surface-accent-6);
+   color: var(--text-accent-6);
+}
+
+.accent-7 {
+   background-color: var(--surface-accent-7);
+   color: var(--text-accent-7);
+}
+
+.accent-8 {
+   background-color: var(--surface-accent-8);
+   color: var(--text-accent-8);
+}

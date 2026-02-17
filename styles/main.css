@@ -1,0 +1,112 @@
+/* Main Global Styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    /* scroll-behavior: smooth; REMOVED per user request for instant scroll */
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.5;
+    /* transition: background-color var(--transition-normal), color var(--transition-normal); REMOVED per user request */
+    padding: var(--space-xl) var(--space-m);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-secondary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-s);
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--space-xs);
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--space-m);
+}
+
+ul,
+ol {
+    margin-left: var(--space-l);
+    margin-bottom: var(--space-m);
+}
+
+li {
+    margin-bottom: var(--space-xs);
+}
+
+code {
+    background-color: var(--bg-secondary);
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--radius-s);
+    font-size: 0.875rem;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: var(--space-xl) 0;
+}
+
+img {
+    max-width: 100%;
+    border-radius: var(--radius-m);
+}
+
+/* Hide scrollbar but keep functionality if needed */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: var(--radius-full);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--text-primary);
+}
