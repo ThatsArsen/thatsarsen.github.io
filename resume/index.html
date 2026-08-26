@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arsen Muradian - Product Designer - CV/Resume - Redirect</title>
-    <meta http-equiv="refresh" content="2; url=https://drive.google.com/file/d/13WPGRx6XvpkP9lLgOvMxjwJOKt9-RB2y/view">
-    <link rel="canonical" href="https://drive.google.com/file/d/13WPGRx6XvpkP9lLgOvMxjwJOKt9-RB2y/view">
     <script type="text/javascript">
-        window.location.href = "https://drive.google.com/file/d/13WPGRx6XvpkP9lLgOvMxjwJOKt9-RB2y/view";
+        const redirectUrl = "https://drive.google.com/file/d/1x_6tba6gdxfYf36lGJ4HegDXJQpRWgCQ/view";
+        document.write(`<meta http-equiv="refresh" content="2; url=${redirectUrl}">`);
+        document.write(`<link rel="canonical" href="${redirectUrl}">`);
+        window.location.href = redirectUrl;
     </script>
     <style>
         body {
@@ -28,8 +29,10 @@
 
 <body>
     <h1>Перенаправляю на мое резюме...</h1>
-    <p>Если этого не произошло автоматически, пожалуйста, <a
-            href="https://drive.google.com/file/d/13WPGRx6XvpkP9lLgOvMxjwJOKt9-RB2y/view">нажмите сюда</a>.</p>
+    <p>Если этого не произошло автоматически, пожалуйста, <a id="redirect-link" href="#">нажмите сюда</a>.</p>
+    <script>
+        document.getElementById("redirect-link").href = redirectUrl;
+    </script>
 </body>
 
 </html>
