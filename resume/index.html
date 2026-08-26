@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arsen Muradian - Product Designer - CV/Resume - Redirect</title>
+    <meta id="redirect-meta" http-equiv="refresh" content="2; url=">
+    <link id="canonical-link" rel="canonical" href="">
     <script type="text/javascript">
         const redirectUrl = "https://drive.google.com/file/d/1x_6tba6gdxfYf36lGJ4HegDXJQpRWgCQ/view";
-        document.write(`<meta http-equiv="refresh" content="2; url=${redirectUrl}">`);
-        document.write(`<link rel="canonical" href="${redirectUrl}">`);
+        document.getElementById("redirect-meta").setAttribute("content", `2; url=${redirectUrl}`);
+        document.getElementById("canonical-link").setAttribute("href", redirectUrl);
         window.location.href = redirectUrl;
     </script>
     <style>
