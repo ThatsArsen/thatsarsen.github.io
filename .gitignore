@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+start_server_localhost_3000.bat
